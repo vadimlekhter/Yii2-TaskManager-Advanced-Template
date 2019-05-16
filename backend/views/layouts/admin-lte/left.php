@@ -2,7 +2,6 @@
 
     <section class="sidebar">
 
-
         <?= dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],

@@ -120,6 +120,7 @@ use yii\helpers\Html;
                                 <small>Member since Nov. 2012</small>
                             </p>
                         </li>
+
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
