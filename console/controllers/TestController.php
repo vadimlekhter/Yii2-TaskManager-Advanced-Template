@@ -13,9 +13,8 @@ class TestController extends Controller
 
 
     /**
-     * Displays homepage.
-     *
-     * @return mixed
+     * Displays Test page.
+     * Test action
      */
     public function actionIndex()
     {
