@@ -32,13 +32,13 @@ use yii\helpers\Html;
                             <ul class="menu">
                                 <li><!-- start message -->
                                     <a href="#">
-                                        <div class="pull-left">
-                                            <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle"
-                                                 alt="User Image"/>
-                                        </div>
+<!--                                        <div class="pull-left">-->
+<!--                                            <img src="--><?//= $directoryAsset ?><!--/img/user2-160x160.jpg" class="img-circle"-->
+<!--                                                 alt="User Image"/>-->
+<!--                                        </div>-->
                                         <h4>
 
-                                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                            <!--<small><i class="fa fa-clock-o"></i></small>-->
                                         </h4>
                                         <p></p>
                                     </a>

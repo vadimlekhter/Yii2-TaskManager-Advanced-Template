@@ -19,7 +19,6 @@ conn.onmessage = function (e) {
     let $el = $('li.messages-menu ul.menu li:first').clone();
     $el.find('p').text(e.data);
     $el.find('h4').text('Websocket user');
-    $el.find ('div.pull-left.img src').text ('/img/user2-160x160.jpg');
     $el.prependTo('li.messages-menu ul.menu');
 
     let cnt = $('li.messages-menu ul.menu li').length-1;
