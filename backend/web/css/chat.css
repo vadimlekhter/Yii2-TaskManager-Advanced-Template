@@ -1,0 +1,25 @@
+#wrapper {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#messagesDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+}
+
+#messageField {
+    height: 80px;
+}
+
+#messageButton {
+    width: 80px;
+    height: 30px;
+    background-color: #1e8ef5;
+    border-top: 1px solid #ffffff;
+    color: white;
+}

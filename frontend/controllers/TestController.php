@@ -20,6 +20,7 @@ class TestController extends Controller
     public function actionIndex()
     {
         return 'Hello, world';
+
     }
 
 }
