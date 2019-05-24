@@ -29,11 +29,11 @@ conn.onmessage = function (e) {
 let button = document.getElementById('messageButton');
 let messageField = document.getElementById('messageField');
 button.addEventListener('click', () => {
+    chatWindow.insertAdjacentHTML('afterbegin', messageField.value + '\n');
     let message = {
         name: userName,
         text: messageField.value
     };
-    // conn.send(messageField.value);
     conn.send(JSON.stringify(message));
     messageField.value = '';
 });
