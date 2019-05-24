@@ -13,6 +13,7 @@ class Chat extends \yii\bootstrap\Widget
     {
         ChatAsset::register($this->view);
         $this->view->registerJsVar('wsPort', $this->port);
+        $this->view->registerJsVar('userName', \Yii::$app->user->identity->username);
     }
 
 

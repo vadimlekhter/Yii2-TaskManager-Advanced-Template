@@ -12,16 +12,16 @@ conn.onerror = function (e) {
 let chatWindow = document.getElementById('chatMessages');
 
 conn.onmessage = function (e) {
-    console.log(e.data);
-    chatWindow.insertAdjacentHTML('afterbegin', e.data + '\n');
+    let inputMessage = JSON.parse(e.data);
+    chatWindow.insertAdjacentHTML('afterbegin', inputMessage.text + '\n');
 
 
     let $el = $('li.messages-menu ul.menu li:first').clone();
-    $el.find('p').text(e.data);
-    $el.find('h4').text('Websocket user');
+    $el.find('p').text(inputMessage.text);
+    $el.find('h4').text(inputMessage.name);
     $el.prependTo('li.messages-menu ul.menu');
 
-    let cnt = $('li.messages-menu ul.menu li').length-1;
+    let cnt = $('li.messages-menu ul.menu li').length - 1;
     $('li.messages-menu span.label-success').text(cnt);
     $('li.messages-menu li.header').text('You have ' + cnt + ' messages');
 };
@@ -29,6 +29,11 @@ conn.onmessage = function (e) {
 let button = document.getElementById('messageButton');
 let messageField = document.getElementById('messageField');
 button.addEventListener('click', () => {
-    conn.send(messageField.value);
+    let message = {
+        name: userName,
+        text: messageField.value
+    };
+    // conn.send(messageField.value);
+    conn.send(JSON.stringify(message));
     messageField.value = '';
 });
