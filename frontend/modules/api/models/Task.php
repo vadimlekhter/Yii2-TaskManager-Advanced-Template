@@ -25,9 +25,8 @@ class Task extends TaskCommon
 //    /**
 //     * @return \yii\db\ActiveQuery
 //     */
-//    public function getCreator()
+//    public function getProject()
 //    {
-//        return $this->hasOne(User::className(), ['id' => 'creator_id']);
+//        return $this->hasOne(Project::className(), ['id' => 'project_id']);
 //    }
-
 }
