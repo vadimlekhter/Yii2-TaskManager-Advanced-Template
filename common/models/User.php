@@ -1,4 +1,5 @@
 <?php
+
 namespace common\models;
 
 use Yii;
@@ -21,6 +22,11 @@ use yii\web\IdentityInterface;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
+ * @property Task[] $activedTasks
+ * @property Task[] $createdTasks
+ * @property Task[] $updatedTasks
+ * @property Project[] $createdProjects
+ * @property Project[] $updatedProjects
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -28,6 +34,11 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
 
+    const RELATION_ACTIVED_TASKS = 'activedTasks';
+    const RELATION_CREATED_TASKS = 'createdTasks';
+    const RELATION_UPDATED_TASKS = 'updatedTasks';
+    const RELATION_CREATED_PROJECTS = 'createdProjects';
+    const RELATION_UPDATED_PROJECTS = 'updatedProjects';
 
     /**
      * {@inheritdoc}
@@ -71,8 +82,11 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+//        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+//        var_dump($token);
+        return static::findOne(['access_token' => $token, 'status' => self::STATUS_ACTIVE]);
     }
+
 
     /**
      * Finds user by username
@@ -109,7 +123,8 @@ class User extends ActiveRecord implements IdentityInterface
      * @param string $token verify email token
      * @return static|null
      */
-    public static function findByVerificationToken($token) {
+    public static function findByVerificationToken($token)
+    {
         return static::findOne([
             'verification_token' => $token,
             'status' => self::STATUS_INACTIVE
@@ -128,7 +143,7 @@ class User extends ActiveRecord implements IdentityInterface
             return false;
         }
 
-        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
+        $timestamp = (int)substr($token, strrpos($token, '_') + 1);
         $expire = Yii::$app->params['user.passwordResetTokenExpire'];
         return $timestamp + $expire >= time();
     }
@@ -205,5 +220,45 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getActivedTasks()
+    {
+        return $this->hasMany(Task::className(), ['executor_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCreatedTasks()
+    {
+        return $this->hasMany(Task::className(), ['creator_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUpdatedTasks()
+    {
+        return $this->hasMany(Task::className(), ['updater_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCreatedProjects()
+    {
+        return $this->hasMany(Project::className(), ['creator_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUpdatedProjects()
+    {
+        return $this->hasMany(Project::className(), ['updater_id' => 'id']);
     }
 }
