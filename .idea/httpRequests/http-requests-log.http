@@ -1,413 +1,503 @@
-GET http://y2aa-frontend.test/api/tasks?expand=project, creator
-Accept: application/json
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
 
-<> 2019-05-25T112529.200.json
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
 
-###
-
-GET http://y2aa-frontend.test/api/tasks?expand=project, creator
-Accept: application/json
-
-<> 2019-05-25T112430.200.json
-
-###
-
-GET http://y2aa-frontend.test/api/tasks?expand=project, creator
-Accept: application/json
-
-<> 2019-05-25T112412.200.json
+<> 2019-05-27T124630.201.json
 
 ###
 
-GET http://y2aa-frontend.test/api/tasks?expand=project, creator
-Accept: application/json
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
 
-<> 2019-05-25T111936.200.json
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
 
-###
-
-GET http://y2aa-frontend.test/api/tasks?page=2&expand=project
-Accept: application/json
-
-<> 2019-05-25T111927.200.json
-
-###
-
-GET http://y2aa-frontend.test/api/tasks?page=2&expand=project
-Accept: application/json
-
-<> 2019-05-25T111514.200.json
+<> 2019-05-27T123918.500.json
 
 ###
 
-GET http://y2aa-frontend.test/api/tasks?page=2&expand=project
-Accept: application/json
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
 
-<> 2019-05-25T092031.200.json
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
 
-###
-
-GET http://y2aa-frontend.test/api/tasks?expand=project, creator
-Accept: application/json
-
-<> 2019-05-25T092007.200.json
-
-###
-
-GET http://y2aa-frontend.test/api/tasks?page=2&expand=creator
-Accept: application/json
-
-<> 2019-05-25T084927.200.json
+<> 2019-05-27T123912.500.json
 
 ###
 
-GET http://y2aa-frontend.test/api/tasks?page=2&expand=creator
+GET http://y2aa-frontend.test/api/projects
 Accept: application/json
+Authorization: Bearer 1
 
-<> 2019-05-25T052204.200.json
+<> 2019-05-27T123851.200.json
 
 ###
 
-GET http://y2aa-frontend.test/api/tasks?page=2&expand=creator
+GET http://y2aa-frontend.test/api/projects
 Accept: application/json
 
-<> 2019-05-25T052127.200.json
+<> 2019-05-27T123548.401.json
 
 ###
 
-GET http://y2aa-frontend.test/api/tasks?page=2&expand=creator
+GET http://y2aa-frontend.test/api/projects
 Accept: application/json
+Authorization: Bearer 1
 
-<> 2019-05-25T052050.200.json
+<> 2019-05-27T123540.200.json
 
 ###
 
-GET http://y2aa-frontend.test/api/tasks?page=2&expand=project
-Accept: application/json
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
 
-<> 2019-05-25T041927.200.json
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
 
-###
-
-GET http://y2aa-frontend.test/api/tasks?expand=project
-Accept: application/json
-
-<> 2019-05-25T041638.200.json
-
-###
-
-GET http://y2aa-frontend.test/api/tasks?expand=project
-Accept: application/json
-
-<> 2019-05-25T041515.200.json
+<> 2019-05-27T123506.201.json
 
 ###
 
-GET http://y2aa-frontend.test/api/tasks?expand=project
-Accept: application/json
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
 
-<> 2019-05-25T041454.500.json
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
 
-###
-
-GET http://y2aa-frontend.test/api/tasks?expand=project
-Accept: application/json
-
-<> 2019-05-25T041440.500.json
-
-###
-
-GET http://y2aa-frontend.test/api/tasks?expand=project
-Accept: application/json
-
-<> 2019-05-25T040657.200.json
+<> 2019-05-27T123034.201.json
 
 ###
 
-GET http://y2aa-frontend.test/api/tasks?extend=project
+GET http://y2aa-frontend.test/api/projects
 Accept: application/json
+Authorization: Bearer 1
 
-<> 2019-05-25T040608.200.json
+<> 2019-05-27T123019.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 1
+
+<> 2019-05-27T122925.200.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T122910.500.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T122850.201.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T122808.500.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T122727.201.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T122659.201.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T122543.201.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T122510.500.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T122451.500.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T122324.201.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 12
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T122315.401.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 16
+
+<> 2019-05-27T122233.401.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 1
+
+<> 2019-05-27T122226.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 14
+
+<> 2019-05-27T122209.401.json
 
 ###
 
 GET http://y2aa-frontend.test/api/tasks
 Accept: application/json
+Authorization: Bearer 14
 
-<> 2019-05-25T040536.200.json
-
-###
-
-DELETE http://y2aa-frontend.test/api/projects/5
-Content-Type: application/json
+<> 2019-05-27T122031.200.json
 
 ###
 
-DELETE http://y2aa-frontend.test/api/projects/4
-Content-Type: application/json
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 14
+
+<> 2019-05-27T122020.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/users
+Accept: application/json
+Authorization: Bearer 14
+
+<> 2019-05-27T121959.401.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 14
+
+<> 2019-05-27T121929.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 1
+
+<> 2019-05-27T121921.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/users
+Accept: application/json
+Authorization: Bearer 1
+
+<> 2019-05-27T121906.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/users
+Accept: application/json
+Authorization: Bearer 16666
+
+<> 2019-05-27T121851.401.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 16666
+
+<> 2019-05-27T121818.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 1
+
+<> 2019-05-27T121808.200.json
 
 ###
 
 GET http://y2aa-frontend.test/api/projects
 Accept: application/json
 
-<> 2019-05-25T035232.200.json
-
-###
-
-GET http://y2aa-frontend.test/api/projects/1
-Accept: application/json
-
-<> 2019-05-25T035222.200.json
-
-###
-
-PUT http://y2aa-frontend.test/api/projects/4
-Content-Type: application/json
-
-{
-  "title": "Project 3333",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-}
-
-<> 2019-05-25T035115.200.json
-
-###
-
-POST http://y2aa-frontend.test/api/projects
-Content-Type: application/json
-
-{
-  "id": "4",
-  "title": "Project 3333",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-}
-
-<> 2019-05-25T034634.201.json
-
-###
-
-PATCH http://y2aa-frontend.test/api/projects
-Content-Type: application/json
-
-{
-  "id": "4",
-  "title": "Project 3333",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-}
-
-<> 2019-05-25T034609.405.json
-
-###
-
-HEAD http://y2aa-frontend.test/api/projects
-Content-Type: application/json
-
-{
-  "id": "4",
-  "title": "Project 3333",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-}
-
-###
-
-PUT http://y2aa-frontend.test/api/projects
-Content-Type: application/json
-
-{
-  "id": "4",
-  "title": "Project 3333",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-}
-
-<> 2019-05-25T034421.405.json
-
-###
-
-PUT http://y2aa-frontend.test/api/projects
-Content-Type: application/json
-
-{
-  "id": "3",
-  "title": "Project 3333",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-}
-
-<> 2019-05-25T034352.405.json
-
-###
-
-POST http://y2aa-frontend.test/api/projects
-Content-Type: application/json
-
-{
-  "title": "Project 3",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-}
-
-<> 2019-05-25T034315.201.json
-
-###
-
-DELETE http://y2aa-frontend.test/api/projects/3
-Content-Type: application/json
-
-###
-
-POST http://y2aa-frontend.test/api/projects
-Content-Type: application/json
-
-{
-  "title": "Project 3",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-}
-
-<> 2019-05-25T034152.201.json
-
-###
-
-POST http://y2aa-frontend.test/api/projects
-Content-Type: application/json
-
-{
-  "title": "Project 3",
-  "creator_id": "1",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-}
-
-<> 2019-05-25T034116.500.json
-
-###
-
-POST http://y2aa-frontend.test/api/projects
-Content-Type: application/json
-
-{
-  "title": "Project 3",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-}
-
-<> 2019-05-25T034042.500.json
-
-###
-
-GET http://y2aa-frontend.test/api/projects/1
-Accept: application/json
-
-<> 2019-05-25T034001.200.json
-
-###
-
-POST http://y2aa-frontend.test/api/projects/post
-Content-Type: application/json
-
-{
-  "title": "Project 3",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-}
-
-<> 2019-05-25T033931.404.html
-
-###
-
-GET http://y2aa-frontend.test/api/projects/1
-Accept: application/json
-
-<> 2019-05-25T033916.200.json
-
-###
-
-GET http://y2aa-frontend.test/api/project/1
-Accept: application/json
-
-<> 2019-05-25T033906.404.html
+<> 2019-05-27T121626.200.json
 
 ###
 
 GET http://y2aa-frontend.test/api/projects
 Accept: application/json
 
-<> 2019-05-25T033858.200.json
+<> 2019-05-27T121123.200.json
 
 ###
 
-GET http://y2aa-frontend.test/api/project
+GET http://y2aa-frontend.test/api/projects
 Accept: application/json
 
-<> 2019-05-25T033850.200.json
+<> 2019-05-27T121101.200.json
 
 ###
 
-GET http://y2aa-frontend.test/api/project
+GET http://y2aa-frontend.test/api/projects
 Accept: application/json
 
-<> 2019-05-25T033318.200.json
+<> 2019-05-27T121029.200.json
 
 ###
 
-POST http://y2aa-frontend.test/api/projects/post
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+
+<> 2019-05-27T120946.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+
+<> 2019-05-27T120850.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+
+<> 2019-05-27T120822.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+
+<> 2019-05-27T120755.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 12
+
+<> 2019-05-27T120639.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 1
+
+<> 2019-05-27T120624.200.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
 Content-Type: application/json
+Authorization: Bearer 12
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T120548.500.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 12
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T120524.500.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T120314.500.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-26T092656.500.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-26T090637.500.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Basic MQ==
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-26T085139.500.json
+
+###
+
+POST http://yii2-adv.loc/api/tasks
+Content-Type: application/json
+Authorization: Basic MQ==
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
 
 {
   "title": "Project 3",
   "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
 }
 
-<> 2019-05-25T033255.404.html
-
-###
-
-POST http://y2aa-frontend.test/api/project/post
-Content-Type: application/json
-
-{
-  "title": "Project 3",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-}
-
-<> 2019-05-25T033241.404.html
-
-###
-
-GET http://y2aa-frontend.test/api/project?expand=tasks
-Accept: application/json
-
-<> 2019-05-25T032730.200.json
-
-###
-
-GET http://y2aa-frontend.test/api/tasks?expand=project, creator
-Accept: application/json
-
-<> 2019-05-25T032643.200.json
-
-###
-
-GET http://y2aa-frontend.test/api/tasks?expand=project, creator
-Accept: application/json
-
-<> 2019-05-25T032415.200.json
-
-###
-
-GET http://y2aa-frontend.test/api/tasks?expand=project, creator
-Accept: application/json
-
-<> 2019-05-25T031907.200.json
-
-###
-
-GET http://y2aa-frontend.test/api/users
-Accept: application/json
-
-<> 2019-05-25T031858.200.json
-
-###
-
-GET http://y2aa-frontend.test/api/users
-Accept: application/json
-
-<> 2019-05-25T031812.200.json
+<> 2019-05-26T081100.422.json
 
 ###
 
