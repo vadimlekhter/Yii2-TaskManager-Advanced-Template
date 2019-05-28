@@ -5,12 +5,12 @@
 # * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
 # * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
 
-GET http://y2aa-frontend.test/api/tasks?expand=project, creator
+GET http://y2aa-frontend.test/api/projects?expand=tasks
 Accept: application/json
 
 ###
 
-GET http://y2aa-frontend.test/api/tasks?page=2&expand=project
+GET http://y2aa-frontend.test/api/tasks?page=2&expand=project,creator
 Accept: application/json
 
 ###

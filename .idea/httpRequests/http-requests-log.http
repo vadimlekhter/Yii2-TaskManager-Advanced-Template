@@ -1,3 +1,108 @@
+GET http://y2aa-frontend.test/api/tasks?page=2&expand=project,creator
+Accept: application/json
+
+<> 2019-05-28T034230.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects?expand=tasks
+Accept: application/json
+
+<> 2019-05-28T034215.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects?expand=tasks
+Accept: application/json
+
+<> 2019-05-28T033232.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/tasks?page=2&expand=project,creator
+Accept: application/json
+
+<> 2019-05-28T032547.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/tasks?page=2&expand=project,creator
+Accept: application/json
+
+<> 2019-05-28T030632.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects?expand=tasks
+Accept: application/json
+
+<> 2019-05-28T030605.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects?expand=tasks
+Accept: application/json
+
+<> 2019-05-28T030437.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects?expand=tasks
+Accept: application/json
+
+<> 2019-05-28T030058.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/tasks?page=2&expand=project,creator
+Accept: application/json
+
+<> 2019-05-28T025941.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/tasks?page=2&expand=project
+Accept: application/json
+
+<> 2019-05-28T025912.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/tasks?page=2&expand=project
+Accept: application/json
+
+<> 2019-05-28T025615.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/tasks?page=2&expand=project
+Accept: application/json
+
+<> 2019-05-28T024919.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+
+<> 2019-05-28T024550.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+
+<> 2019-05-28T024211.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+
+<> 2019-05-28T024122.500.json
+
+###
+
 POST http://y2aa-frontend.test/api/projects
 Content-Type: application/json
 Authorization: Bearer 1
@@ -345,159 +450,6 @@ GET http://y2aa-frontend.test/api/projects
 Accept: application/json
 
 <> 2019-05-27T121101.200.json
-
-###
-
-GET http://y2aa-frontend.test/api/projects
-Accept: application/json
-
-<> 2019-05-27T121029.200.json
-
-###
-
-GET http://y2aa-frontend.test/api/projects
-Accept: application/json
-
-<> 2019-05-27T120946.200.json
-
-###
-
-GET http://y2aa-frontend.test/api/projects
-Accept: application/json
-
-<> 2019-05-27T120850.200.json
-
-###
-
-GET http://y2aa-frontend.test/api/projects
-Accept: application/json
-
-<> 2019-05-27T120822.200.json
-
-###
-
-GET http://y2aa-frontend.test/api/projects
-Accept: application/json
-
-<> 2019-05-27T120755.200.json
-
-###
-
-GET http://y2aa-frontend.test/api/projects
-Accept: application/json
-Authorization: Bearer 12
-
-<> 2019-05-27T120639.200.json
-
-###
-
-GET http://y2aa-frontend.test/api/projects
-Accept: application/json
-Authorization: Bearer 1
-
-<> 2019-05-27T120624.200.json
-
-###
-
-POST http://y2aa-frontend.test/api/projects
-Content-Type: application/json
-Authorization: Bearer 12
-
-{
-  "title": "New Project 111",
-  "description": "Project Description"
-}
-
-<> 2019-05-27T120548.500.json
-
-###
-
-POST http://y2aa-frontend.test/api/projects
-Content-Type: application/json
-Authorization: Bearer 12
-
-{
-  "title": "New Project 111",
-  "description": "Project Description"
-}
-
-<> 2019-05-27T120524.500.json
-
-###
-
-POST http://y2aa-frontend.test/api/projects
-Content-Type: application/json
-Authorization: Bearer 1
-
-{
-  "title": "New Project 111",
-  "description": "Project Description"
-}
-
-<> 2019-05-27T120314.500.json
-
-###
-
-POST http://y2aa-frontend.test/api/projects
-Content-Type: application/json
-Authorization: Bearer 1
-
-{
-  "title": "New Project 111",
-  "description": "Project Description"
-}
-
-<> 2019-05-26T092656.500.json
-
-###
-
-POST http://y2aa-frontend.test/api/projects
-Content-Type: application/json
-Authorization: Bearer 1
-
-{
-  "title": "New Project 111",
-  "description": "Project Description"
-}
-
-<> 2019-05-26T090637.500.json
-
-###
-
-POST http://y2aa-frontend.test/api/projects
-Content-Type: application/json
-Authorization: Basic MQ==
-
-{
-  "title": "New Project 111",
-  "description": "Project Description"
-}
-
-<> 2019-05-26T085139.500.json
-
-###
-
-POST http://yii2-adv.loc/api/tasks
-Content-Type: application/json
-Authorization: Basic MQ==
-
-{
-  "title": "New Project 111",
-  "description": "Project Description"
-}
-
-###
-
-POST http://y2aa-frontend.test/api/projects
-Content-Type: application/json
-Authorization: Bearer 1
-
-{
-  "title": "Project 3",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-}
-
-<> 2019-05-26T081100.422.json
 
 ###
 

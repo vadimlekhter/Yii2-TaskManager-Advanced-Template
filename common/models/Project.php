@@ -26,6 +26,12 @@ use yii\behaviors\TimestampBehavior;
 
 class Project extends \yii\db\ActiveRecord
 {
+    protected $classTask = Task::class;
+    protected $classUser = User::class;
+
+    const RELATION_CREATOR = 'creator';
+    const RELATION_UPDATER = 'updater';
+    const RELATION_PROJECT_USERS = 'projectUsers';
     const RELATION_TASKS = 'tasks';
 
     /**
@@ -90,7 +96,7 @@ class Project extends \yii\db\ActiveRecord
      */
     public function getCreator()
     {
-        return $this->hasOne(User::className(), ['id' => 'creator_id']);
+        return $this->hasOne($this->classUser, ['id' => 'creator_id']);
     }
 
     /**
@@ -98,7 +104,7 @@ class Project extends \yii\db\ActiveRecord
      */
     public function getUpdater()
     {
-        return $this->hasOne(User::className(), ['id' => 'updater_id']);
+        return $this->hasOne($this->classUser, ['id' => 'updater_id']);
     }
 
     /**
@@ -106,7 +112,7 @@ class Project extends \yii\db\ActiveRecord
      */
     public function getProjectUsers()
     {
-        return $this->hasMany(ProjectUser::className(), ['project_id' => 'id']);
+        return $this->hasMany(ProjectUser::class, ['project_id' => 'id']);
     }
 
     /**
@@ -114,7 +120,8 @@ class Project extends \yii\db\ActiveRecord
      */
     public function getTasks()
     {
-        return $this->hasMany(Task::className(), ['project_id' => 'id']);
+//        return $this->hasMany(Task::className(), ['project_id' => 'id']);
+        return $this->hasMany($this->classTask, ['project_id' => 'id']);
     }
 
     /**
