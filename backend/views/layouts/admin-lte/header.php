@@ -58,7 +58,7 @@ use yii\helpers\Html;
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <?= Html::img(Yii::$app->user->identity->getThumbUploadUrl('avatar', \common\models\User::AVATAR_ICO)) ?>
                         <span class="hidden-xs"><?= Yii::$app->user->identity->username ?></span>
-                        <p class="hidden-xs"><?= Yii::$app->user->identity->email ?></p>
+                        <span class="hidden-xs"><?= Yii::$app->user->identity->email ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
