@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 
 /* @var $this \yii\web\View */
@@ -32,10 +33,11 @@ use yii\helpers\Html;
                             <ul class="menu">
                                 <li><!-- start message -->
                                     <a href="#">
-<!--                                        <div class="pull-left">-->
-<!--                                            <img src="--><?//= $directoryAsset ?><!--/img/user2-160x160.jpg" class="img-circle"-->
-<!--                                                 alt="User Image"/>-->
-<!--                                        </div>-->
+                                        <!--                                        <div class="pull-left">-->
+                                        <!--                                            <img src="-->
+                                        <? //= $directoryAsset ?><!--/img/user2-160x160.jpg" class="img-circle"-->
+                                        <!--                                                 alt="User Image"/>-->
+                                        <!--                                        </div>-->
                                         <h4>
 
                                             <!--<small><i class="fa fa-clock-o"></i></small>-->
@@ -54,17 +56,19 @@ use yii\helpers\Html;
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                        <span class="hidden-xs"><?=Yii::$app->user->identity->username?></span>
+                        <?= Html::img(Yii::$app->user->identity->getThumbUploadUrl('avatar', \common\models\User::AVATAR_ICO)) ?>
+                        <span class="hidden-xs"><?= Yii::$app->user->identity->username ?></span>
+                        <p class="hidden-xs"><?= Yii::$app->user->identity->email ?></p>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle"
-                                 alt="User Image"/>
+                            <?= Html::img(Yii::$app->user->identity->getThumbUploadUrl('avatar', \common\models\User::AVATAR_ICO)) ?>
 
                             <p>
-                                <?=Yii::$app->user->identity->username?>
+                                <?= Yii::$app->user->identity->username ?>
+                                <?= Yii::$app->user->identity->email ?></p>
+                            <p>
                                 <small>Member since Nov. 2012</small>
                             </p>
                         </li>
@@ -76,7 +80,7 @@ use yii\helpers\Html;
                             </div>
                             <div class="pull-right">
                                 <?= Html::a(
-                                    'Logout ('.Yii::$app->user->identity->username.')',
+                                    'Logout (' . Yii::$app->user->identity->username . ')',
                                     ['/site/logout'],
                                     ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
                                 ) ?>
