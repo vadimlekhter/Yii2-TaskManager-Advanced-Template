@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+//            ['class' => 'yii\grid\SerialColumn'],
 
             'id',
             'username',
@@ -36,6 +36,14 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'password_reset_token',
             'email:email',
             ['attribute' => 'status',
+                'content' => function ($data) {
+                    foreach (User::STATUS_LABELS as $key => $value) {
+                        if ($key == $data['attributes']['status']) {
+                            return $value;
+                        }
+                    }
+                    return false;
+                },
                 'filter' => User::STATUS_LABELS
             ],
             'created_at:datetime',
