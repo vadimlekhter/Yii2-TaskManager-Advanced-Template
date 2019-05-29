@@ -37,12 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'email:email',
             ['attribute' => 'status',
                 'content' => function ($data) {
-                    foreach (User::STATUS_LABELS as $key => $value) {
-                        if ($key == $data['attributes']['status']) {
-                            return $value;
-                        }
-                    }
-                    return false;
+                    $status = \yii\helpers\ArrayHelper::getValue(User::STATUS_LABELS, $data['attributes']['status']);
+                    return $status;
                 },
                 'filter' => User::STATUS_LABELS
             ],

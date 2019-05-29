@@ -2,10 +2,8 @@
 
 namespace common\models;
 
-use mohorev\file\UploadBehavior;
 use mohorev\file\UploadImageBehavior;
 use Yii;
-use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
