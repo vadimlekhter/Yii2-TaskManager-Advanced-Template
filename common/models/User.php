@@ -83,8 +83,8 @@ class User extends ActiveRecord implements IdentityInterface
                 'url' => Yii::$app->params['hosts.front'] .
                    Yii::getAlias('@web/upload/user/{id}'),
                 'thumbs' => [
-                    'ico' => ['width' => 40, 'height' => 60],
-                    'preview' => ['width' => 200, 'height' => 200],
+                    self::AVATAR_ICO => ['width' => 40, 'height' => 60],
+                    self::AVATAR_PREVIEW => ['width' => 200, 'height' => 200],
                 ]
             ],
         ];

@@ -36,9 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'password_reset_token',
             'email:email',
             ['attribute' => 'status',
-                'content' => function ($data) {
-                    $status = \yii\helpers\ArrayHelper::getValue(User::STATUS_LABELS, $data['attributes']['status']);
-                    return $status;
+                'content' => function ($user) {
+                return User::STATUS_LABELS[$user->status];
                 },
                 'filter' => User::STATUS_LABELS
             ],
