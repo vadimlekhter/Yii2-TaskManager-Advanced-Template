@@ -132,6 +132,13 @@ class ProjectController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
+    /**
+     * Loads new ProjectUser model via RELATION_PROJECT_USERS relation
+     * from ProjectController action 'update' by https://github.com/la-haute-societe/yii2-save-relations-behavior
+     * and https://github.com/unclead/yii2-multiple-input
+     * @param Project $model
+     * @return mixed
+     */
     private function loadModel (Project $model) {
         $data = Yii::$app->request->post($model->formName());
         $projectUsers = $data[Project::RELATION_PROJECT_USERS] ?? null;

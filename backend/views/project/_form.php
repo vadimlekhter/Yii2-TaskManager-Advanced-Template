@@ -28,6 +28,7 @@ use \yii\bootstrap\ActiveForm;
     <?= $form->field($model, 'active')->dropDownList(Project::STATUS_LABELS) ?>
     <?php
     if ($model->scenario === 'update') {
+        //https://github.com/unclead/yii2-multiple-input
         echo $form->field($model, Project::RELATION_PROJECT_USERS)->widget(MultipleInput::className(), [
             'id' => 'project-users-widget',
             'max' => 10,
