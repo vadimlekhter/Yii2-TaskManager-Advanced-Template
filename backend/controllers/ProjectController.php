@@ -8,6 +8,7 @@ use common\models\search\ProjectSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use \common\models\User;
 
 /**
  * ProjectController implements the CRUD actions for Project model.
@@ -65,6 +66,7 @@ class ProjectController extends Controller
     public function actionCreate()
     {
         $model = new Project();
+        $users = User::find()->select('username')->indexBy('id')->column();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -72,6 +74,7 @@ class ProjectController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'users' => $users,
         ]);
     }
 
@@ -85,13 +88,17 @@ class ProjectController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $users = User::find()->select('username')->indexBy('id')->column();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $model->setScenario(Project::SCENARIO_UPDATE);
+
+        if ($this->loadModel($model) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'users' => $users
         ]);
     }
 
@@ -123,5 +130,14 @@ class ProjectController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    private function loadModel (Project $model) {
+        $data = Yii::$app->request->post($model->formName());
+        $projectUsers = $data[Project::RELATION_PROJECT_USERS] ?? null;
+        if ($projectUsers !== null) {
+            $model->projectUsers = $projectUsers === '' ? [] : $projectUsers;
+        }
+        return $model->load(Yii::$app->request->post());
     }
 }

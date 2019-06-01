@@ -24,9 +24,13 @@ use yii\bootstrap\ActiveForm;
     <?= $form->field($model, 'password')->textInput() ?>
     <?= $form->field($model, 'email')->textInput() ?>
     <?= $form->field($model, 'status')->dropDownList(User::STATUS_LABELS) ?>
-    <?= $form->field($model, 'avatar')
+    <?=
+    //    https://github.com/mohorev/yii2-upload-behavior
+    //    https://github.com/yiisoft/yii2-imagine
+    $form->field($model, 'avatar')
         ->fileInput(['accept' => 'image/*'])
-        ->label('Photo' . '<br>' . Html::img($model->getThumbUploadUrl('avatar', \common\models\User::AVATAR_PREVIEW))) ?>
+        ->label('Photo' . '<br>' . Html::img($model->getThumbUploadUrl('avatar', \common\models\User::AVATAR_PREVIEW)))
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

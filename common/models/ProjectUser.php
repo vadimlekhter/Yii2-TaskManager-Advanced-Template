@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use phpDocumentor\Reflection\Types\Self_;
 use Yii;
 
 /**
@@ -17,6 +18,16 @@ use Yii;
  */
 class ProjectUser extends \yii\db\ActiveRecord
 {
+    const ROLE_MANAGER = 'manager';
+    const ROLE_DEVELOPER = 'developer';
+    const ROLE_TESTER = 'tester';
+
+    const ROLE_LABELS = [
+        self::ROLE_MANAGER => 'Менеджер',
+        self::ROLE_DEVELOPER => 'Девелопер',
+        self::ROLE_TESTER => 'Тестер',
+    ];
+
     /**
      * {@inheritdoc}
      */

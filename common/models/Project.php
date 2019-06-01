@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -23,11 +24,25 @@ use yii\behaviors\TimestampBehavior;
  * @property ProjectUser[] $projectUsers
  * @property Task[] $tasks
  */
-
 class Project extends \yii\db\ActiveRecord
 {
     protected $classTask = Task::class;
     protected $classUser = User::class;
+
+    const SCENARIO_UPDATE = 'update';
+
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 0;
+
+    const STATUSES = [
+        self::STATUS_ACTIVE,
+        self::STATUS_INACTIVE
+    ];
+
+    const STATUS_LABELS = [
+        self::STATUS_ACTIVE => 'Активный',
+        self::STATUS_INACTIVE => 'Неактивный'
+    ];
 
     const RELATION_CREATOR = 'creator';
     const RELATION_UPDATER = 'updater';
@@ -52,7 +67,9 @@ class Project extends \yii\db\ActiveRecord
             [['description'], 'string'],
             [['active', 'creator_id', 'updater_id', 'created_at', 'updated_at'], 'integer'],
             [['title'], 'string', 'max' => 255],
+            [['active'], 'required', 'on' => self::SCENARIO_UPDATE],
             ['active', 'default', 'value' => 0],
+            ['active', 'in', 'range' => self::STATUSES],
             [['creator_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['creator_id' => 'id']],
             [['updater_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['updater_id' => 'id']],
         ];
@@ -70,7 +87,12 @@ class Project extends \yii\db\ActiveRecord
                 'class' => BlameableBehavior::class,
                 'createdByAttribute' => 'creator_id',
                 'updatedByAttribute' => 'updater_id'
-            ]
+            ],
+//            https://github.com/la-haute-societe/yii2-save-relations-behavior
+            'saveRelations' => [
+                'class' => SaveRelationsBehavior::className(),
+                'relations' => [self::RELATION_PROJECT_USERS],
+            ],
         ];
     }
 

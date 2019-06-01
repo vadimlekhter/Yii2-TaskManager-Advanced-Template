@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use \common\models\User;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\User */
@@ -39,7 +40,11 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'password_hash',
 //            'password_reset_token',
             'email:email',
-            'status',
+            ['attribute' => 'status',
+                'value' => function ($model) {
+                    return User::STATUS_LABELS[$model->status];
+                }
+            ],
             'created_at:datetime',
             'updated_at:datetime',
 //            'verification_token',

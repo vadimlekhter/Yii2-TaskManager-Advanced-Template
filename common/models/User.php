@@ -76,6 +76,8 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             TimestampBehavior::className(),
             [
+//                https://github.com/mohorev/yii2-upload-behavior
+//                https://github.com/yiisoft/yii2-imagine
                 'class' => UploadImageBehavior::class,
                 'attribute' => 'avatar',
                 'scenarios' => [self::SCENARIO_UPDATE],
