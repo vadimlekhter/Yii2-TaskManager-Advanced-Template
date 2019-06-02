@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use \common\models\User;
+use \common\models\ProjectUser;
+use \common\models\Project;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\User */
@@ -51,5 +53,23 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'access_token',
         ],
     ]) ?>
+
+    <?php
+    if (!$dataProvider == null) {
+        echo '<h2>Users projects</h2>';
+        echo \yii\grid\GridView::widget([
+            'dataProvider' => $dataProvider,
+            'columns' => [
+                [
+                    'label' => 'Project',
+                    'value' => function (ProjectUser $model) {
+                        return Html::a(Project::find()->where(['id' => $model['project_id']])->select('title')->scalar(),
+                            ['project/view', 'id' => $model['project_id']]);
+                    },
+                    'format' => 'html'],
+                'role',
+            ]]);
+    }
+    ?>
 
 </div>

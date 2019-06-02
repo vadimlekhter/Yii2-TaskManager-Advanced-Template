@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use \common\models\Project;
+use \common\models\User;
+use \common\models\ProjectUser;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Project */
@@ -44,5 +46,23 @@ $this->params['breadcrumbs'][] = $this->title;
             'updated_at:datetime',
         ],
     ]) ?>
+
+    <?php
+    if (!$dataProvider == null) {
+        echo '<h2>Project users</h2>';
+        echo \yii\grid\GridView::widget([
+            'dataProvider' => $dataProvider,
+            'columns' => [
+                [
+                    'label' => 'User',
+                    'value' => function (ProjectUser $model) {
+                        return Html::a(User::find()->where(['id' => $model['user_id']])->select('username')->scalar(),
+                            ['user/view', 'id' => $model['user_id']]);
+                    },
+                    'format' => 'html'],
+                'role',
+            ]]);
+    }
+    ?>
 
 </div>
