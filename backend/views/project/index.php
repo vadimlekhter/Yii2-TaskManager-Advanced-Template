@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use \common\models\Project;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\ProjectSearch */
@@ -31,10 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'description:ntext',
             ['attribute' => 'active',
-                'content' => function ($project) {
-                    return \common\models\Project::STATUS_LABELS[$project->active];
+                'content' => function ($model) {
+                    return Project::STATUS_LABELS[$model->active];
                 },
-                'filter' => \common\models\Project::STATUS_LABELS
+                'filter' => Project::STATUS_LABELS
             ],
             'creator_id',
             'updater_id',

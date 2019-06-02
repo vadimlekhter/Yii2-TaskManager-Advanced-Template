@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use \common\models\ProjectUser;
 use \common\models\Project;
+use \common\models\User;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\User */
@@ -33,16 +34,21 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'username',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
+//            'auth_key',
+//            'password_hash',
+//            'password_reset_token',
             'email:email',
-            'status',
-            'created_at',
-            'updated_at',
-            'verification_token',
-            'access_token',
-            'avatar',
+            [
+                'attribute' => 'status',
+                'value' => function ($model) {
+                    return User::STATUS_LABELS[$model->status];
+                }
+            ],
+//            'created_at',
+//            'updated_at',
+//            'verification_token',
+//            'access_token',
+//            'avatar',
         ],
     ]) ?>
 

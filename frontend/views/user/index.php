@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use common\models\User;
+
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -25,15 +27,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+//            ['class' => 'yii\grid\SerialColumn'],
 
             'id',
             'username',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
-            //'email:email',
-            //'status',
+//            'auth_key',
+//            'password_hash',
+//            'password_reset_token',
+            'email:email',
+            ['attribute' => 'status',
+                'content' => function ($user) {
+                    return User::STATUS_LABELS[$user->status];
+                },
+                'filter' => User::STATUS_LABELS
+            ],
             //'created_at',
             //'updated_at',
             //'verification_token',
