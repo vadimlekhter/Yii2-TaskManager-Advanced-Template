@@ -61,7 +61,6 @@ class ProjectController extends Controller
                 ->select('role, user_id')
         ]);
 
-
         return $this->render('view', [
             'model' => $this->findModel($id),
             'dataProvider' => $dataProvider,
