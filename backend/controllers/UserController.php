@@ -57,7 +57,7 @@ class UserController extends Controller
         $model = $this->findModel($id);
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $model->getUsersProject()->select('role, project_id')
+            'query' => $model->getUsersProject()
         ]);
 
         return $this->render('view', [
