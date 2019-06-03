@@ -55,14 +55,14 @@ class ProjectController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+
         $dataProvider = new ActiveDataProvider([
-            'query' => ProjectUser::find()
-                ->where(['project_id' => $id])
-                ->select('role, user_id')
+        'query' => $model->getProjectUsers()->select('role, user_id')
         ]);
 
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
             'dataProvider' => $dataProvider,
         ]);
     }

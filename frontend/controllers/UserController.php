@@ -54,15 +54,15 @@ class UserController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+
         $dataProvider = new ActiveDataProvider([
-            'query' => ProjectUser::find()
-                ->where(['user_id' => $id])
-                ->select('role, project_id')
+            'query' => $model->getUsersProject()->select('role, project_id')
         ]);
 
         return $this->render('view', [
-            'model' => $this->findModel($id),
-            'dataProvider' => $dataProvider
+            'model' => $model,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
