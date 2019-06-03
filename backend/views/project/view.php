@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'label' => 'User',
                     'value' => function (ProjectUser $model) {
-                        return Html::a(User::find()->where(['id' => $model['user_id']])->select('username')->scalar(),
+                        return Html::a($model->getUser()->select(['username'])->scalar(),
                             ['user/view', 'id' => $model['user_id']]);
                     },
                     'format' => 'html'],

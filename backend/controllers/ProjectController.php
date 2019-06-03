@@ -99,8 +99,6 @@ class ProjectController extends Controller
         $model = $this->findModel($id);
         $users = User::find()->select('username')->indexBy('id')->column();
 
-        $model->setScenario(Project::SCENARIO_UPDATE);
-
         if ($this->loadModel($model) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }

@@ -8,6 +8,7 @@ use \yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Project */
+/* @var $users common\models\User */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -26,8 +27,9 @@ use \yii\bootstrap\ActiveForm;
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'active')->dropDownList(Project::STATUS_LABELS) ?>
+
     <?php
-    if ($model->scenario === 'update') {
+    if (!$model->isNewRecord) {
         //https://github.com/unclead/yii2-multiple-input
         echo $form->field($model, Project::RELATION_PROJECT_USERS)->widget(MultipleInput::className(), [
             'id' => 'project-users-widget',
