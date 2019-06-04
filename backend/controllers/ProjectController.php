@@ -10,7 +10,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use \common\models\User;
+use common\models\User;
 
 /**
  * ProjectController implements the CRUD actions for Project model.
@@ -58,7 +58,7 @@ class ProjectController extends Controller
         $model = $this->findModel($id);
 
         $dataProvider = new ActiveDataProvider([
-        'query' => $model->getProjectUsers()
+            'query' => $model->getProjectUsers()
         ]);
 
         return $this->render('view', [
@@ -97,9 +97,17 @@ class ProjectController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
         $users = User::find()->select('username')->indexBy('id')->column();
 
+        $usersRoles = $model->getUserRoles();
+
         if ($this->loadModel($model) && $model->save()) {
+            if ($newRoles = array_diff_assoc($model->getUserRoles(), $usersRoles)) {
+                foreach ($newRoles as $userId => $newRole) {
+                    Yii::$app->projectService->assignRole($model, User::findOne($userId), $newRole);
+                }
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
