@@ -1,10 +1,5 @@
 <?php
 
-use common\models\User;
-use common\models\Project;
-use yii\helpers\Html;
-use yii\web\View;
-
 /* @var $this yii\web\View */
 /* @var $user common\models\User */
 /* @var $project common\models\Project */

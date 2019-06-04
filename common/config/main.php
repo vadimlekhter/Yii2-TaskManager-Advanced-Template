@@ -3,6 +3,7 @@
 use common\services\AssignRoleEvent;
 use common\services\ProjectService;
 use common\services\EmailService;
+use common\services\NotificationService;
 
 return [
     'aliases' => [
@@ -18,13 +19,14 @@ return [
         'projectService' => [
             'class' => ProjectService::class,
             'on ' . ProjectService::EVENT_ASSIGN_ROLE => function (AssignRoleEvent $e) {
-                $views = ['html' => 'newUserRole-html', 'text' => 'newUserRole-text'];
-                $data = ['user' => $e->user, 'project' => $e->project, 'role' => $e->role];
-                Yii::$app->emailService->sendEmail($e->user->email, 'Новая роль', $views, $data);
+                Yii::$app->notificationService->sendNewUserRoleEmail($e);
             }
         ],
         'emailService' => [
             'class' => EmailService::class
+        ],
+        'notificationService' => [
+            'class' => NotificationService::class
         ]
     ],
     'modules' => [
