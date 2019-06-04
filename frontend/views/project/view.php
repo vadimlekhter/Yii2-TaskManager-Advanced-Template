@@ -3,8 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use common\models\ProjectUser;
-use common\models\User;
 use \common\models\Project;
+use \yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Project */
@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php
     if (!$dataProvider == null) {
         echo '<h2>Projects users</h2>';
-        echo \yii\grid\GridView::widget([
+        echo GridView::widget([
             'dataProvider' => $dataProvider,
             'columns' => [
                 [
