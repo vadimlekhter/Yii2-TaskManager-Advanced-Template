@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => 'Project',
                     'value' => function (ProjectUser $model) {
                         return Html::a($model->project->title,
-                            ['project/view', 'id' => $model['project_id']]);
+                            ['project/view', 'id' => $model->project_id]);
 
                     },
                     'format' => 'html'],
