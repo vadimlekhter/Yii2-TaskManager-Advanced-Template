@@ -1,5 +1,7 @@
 <?php
 
+use \yii\helpers\Html;
+
 /* @var $this yii\web\View */
 /* @var $user common\models\User */
 /* @var $project common\models\Project */
@@ -7,5 +9,5 @@
 ?>
 
 <div class="verify-email">
-    <p>Hello <?= $user->username ?>, you have new role <?= $role ?> in <?= $project->title ?> project.</p>
+    <p>Hello <?= Html::encode($user->username) ?>, you have new role "<?= $role ?>" in "<?= \yii\helpers\Html::encode($project->title) ?>" project.</p>
 </div>
