@@ -2,6 +2,7 @@
 
 namespace console\controllers;
 
+use common\models\User;
 use Yii;
 use yii\console\Controller;
 
@@ -28,6 +29,5 @@ class RbacController extends Controller
         foreach (Yii::$app->params['admins'] as $adminId) {
             $auth->assign($admin, $adminId);
         }
-
     }
 }
