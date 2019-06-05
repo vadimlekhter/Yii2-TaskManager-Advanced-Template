@@ -64,7 +64,7 @@ class ProjectService extends Component
      * @param Project $project
      * @param User $user
      * @param string $role
-     * @return ChangeRoleEvent
+     * @return ChangeRoleEvent $event
      */
     private function createChangeRoleEvent (Project $project, User $user, $role) {
         $event = new ChangeRoleEvent();

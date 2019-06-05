@@ -3,6 +3,8 @@
 
 namespace common\services;
 
+use common\models\Project;
+use common\models\User;
 use Yii;
 
 /**
@@ -13,23 +15,27 @@ class NotificationService
 {
     /**
      * Email to user with new role in project
-     * @param ChangeRoleEvent $e
+     * @param User $user
+     * @param Project $project
+     * @param string $role
      */
-    public function sendNewUserRoleEmail($e)
+    public function sendNewUserRoleEmail($user, $project, $role)
     {
         $views = ['html' => 'newUserRole-html', 'text' => 'newUserRole-text'];
-        $data = ['user' => $e->user, 'project' => $e->project, 'role' => $e->role];
-        Yii::$app->emailService->sendEmail($e->user->email, 'New role', $views, $data);
+        $data = ['user' => $user, 'project' => $project, 'role' => $role];
+        Yii::$app->emailService->sendEmail($user->email, 'New role', $views, $data);
     }
 
     /**
      * Email to user with cancelled role in project
-     * @param ChangeRoleEvent $e
+     * @param User $user
+     * @param Project $project
+     * @param string $role
      */
-    public function sendCancelUserRoleEmail($e)
+    public function sendCancelUserRoleEmail($user, $project, $role)
     {
         $views = ['html' => 'cancelUserRole-html', 'text' => 'cancelUserRole-text'];
-        $data = ['user' => $e->user, 'project' => $e->project, 'role' => $e->role];
-        Yii::$app->emailService->sendEmail($e->user->email, 'Cancel role', $views, $data);
+        $data = ['user' => $user, 'project' => $project, 'role' => $role];
+        Yii::$app->emailService->sendEmail($user->email, 'Cancel role', $views, $data);
     }
 }

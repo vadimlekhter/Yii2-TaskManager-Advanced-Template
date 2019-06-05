@@ -19,10 +19,10 @@ return [
         'projectService' => [
             'class' => ProjectService::class,
             'on ' . ProjectService::EVENT_ASSIGN_ROLE => function (ChangeRoleEvent $e) {
-                Yii::$app->notificationService->sendNewUserRoleEmail($e);
+                Yii::$app->notificationService->sendNewUserRoleEmail($e->user, $e->project, $e->role);
             },
             'on ' . ProjectService::EVENT_CANCEL_ROLE => function (ChangeRoleEvent $e) {
-                Yii::$app->notificationService->sendCancelUserRoleEmail($e);
+                Yii::$app->notificationService->sendCancelUserRoleEmail($e->user, $e->project, $e->role);
             }
         ],
         'emailService' => [
