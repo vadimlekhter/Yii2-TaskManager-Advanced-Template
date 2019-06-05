@@ -13,6 +13,11 @@ return [
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
+        'authManager' => [
+            'class' => 'yii\rbac\PhpManager',
+            'itemFile' => '@console/rbac/items.php',
+            'assignmentFile' => '@console/rbac/assignments.php'
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

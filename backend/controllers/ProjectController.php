@@ -37,7 +37,8 @@ class ProjectController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['index', 'view', 'create', 'update', 'delete'],
-                        'roles' => ['@'],
+//                        'roles' => ['@'],
+                        'roles' => ['admin'],
                     ],
                 ],
             ]
