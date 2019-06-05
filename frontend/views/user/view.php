@@ -32,6 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
+            ['attribute' => 'avatar',
+                'label' => Html::img($model->getThumbUploadUrl('avatar', \common\models\User::AVATAR_PREVIEW)),
+                'value' => ''
+            ],
             'id',
             'username',
 //            'auth_key',

@@ -124,13 +124,12 @@ class UserController extends Controller
     /**
      * Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionProfile($id)
+    public function actionProfile()
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel(Yii::$app->user->id);
 
         $model->setScenario(User::SCENARIO_UPDATE);
 
