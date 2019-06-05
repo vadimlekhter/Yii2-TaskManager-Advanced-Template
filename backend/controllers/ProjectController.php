@@ -2,7 +2,6 @@
 
 namespace backend\controllers;
 
-use common\models\ProjectUser;
 use Yii;
 use common\models\Project;
 use common\models\search\ProjectSearch;
