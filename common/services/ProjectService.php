@@ -12,7 +12,7 @@ use yii\base\Event;
  * Class AssignRoleEvent
  * @package common\services
  */
-class AssignRoleEvent extends Event
+class ChangeRoleEvent extends Event
 {
 
     /**
@@ -36,18 +36,41 @@ class AssignRoleEvent extends Event
 class ProjectService extends Component
 {
     const EVENT_ASSIGN_ROLE = 'event_assign_role';
+    const EVENT_CANCEL_ROLE = 'event_cancel_role';
 
     /**
      * @param Project $project
      * @param User $user
-     * @param $role string
+     * @param string $role
      */
     public function assignRole(Project $project, User $user, $role)
     {
-        $event = new AssignRoleEvent();
+        $event = $this->createChangeRoleEvent($project, $user, $role);
+        $this->trigger(self::EVENT_ASSIGN_ROLE, $event);
+    }
+
+    /**
+     * @param Project $project
+     * @param User $user
+     * @param string $role
+     */
+    public function cancelRole(Project $project, User $user, $role)
+    {
+        $event = $this->createChangeRoleEvent($project, $user, $role);
+        $this->trigger(self::EVENT_CANCEL_ROLE, $event);
+    }
+
+    /**
+     * @param Project $project
+     * @param User $user
+     * @param string $role
+     * @return ChangeRoleEvent
+     */
+    private function createChangeRoleEvent (Project $project, User $user, $role) {
+        $event = new ChangeRoleEvent();
         $event->project = $project;
         $event->user = $user;
         $event->role = $role;
-        $this->trigger(self::EVENT_ASSIGN_ROLE, $event);
+        return $event;
     }
 }

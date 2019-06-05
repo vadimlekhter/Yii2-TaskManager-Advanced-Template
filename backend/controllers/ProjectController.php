@@ -107,7 +107,11 @@ class ProjectController extends Controller
                 foreach ($newRoles as $userId => $newRole) {
                     Yii::$app->projectService->assignRole($model, User::findOne($userId), $newRole);
                 }
-            }
+            } elseif ($oldRoles = array_diff_assoc($usersRoles, $model->getUserRoles())) {
+                foreach ($oldRoles as $userId => $oldRole) {
+                    Yii::$app->projectService->cancelRole($model, User::findOne($userId), $oldRole);
+                }
+            };
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -127,7 +131,6 @@ class ProjectController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-use common\services\AssignRoleEvent;
+use common\services\ChangeRoleEvent;
 use common\services\ProjectService;
 use common\services\EmailService;
 use common\services\NotificationService;
@@ -18,8 +18,11 @@ return [
         ],
         'projectService' => [
             'class' => ProjectService::class,
-            'on ' . ProjectService::EVENT_ASSIGN_ROLE => function (AssignRoleEvent $e) {
+            'on ' . ProjectService::EVENT_ASSIGN_ROLE => function (ChangeRoleEvent $e) {
                 Yii::$app->notificationService->sendNewUserRoleEmail($e);
+            },
+            'on ' . ProjectService::EVENT_CANCEL_ROLE => function (ChangeRoleEvent $e) {
+                Yii::$app->notificationService->sendCancelUserRoleEmail($e);
             }
         ],
         'emailService' => [
