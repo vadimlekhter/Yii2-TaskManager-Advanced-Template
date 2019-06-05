@@ -21,12 +21,15 @@ class RbacController extends Controller
 
         $allUsersId = User::find()->select(['id'])->column();
 
-        foreach ($allUsersId as $userId) {
-            $auth->assign($user, $userId);
-        }
-
         foreach (Yii::$app->params['admins'] as $adminId) {
             $auth->assign($admin, $adminId);
         }
+
+        foreach ($allUsersId as $userId) {
+            if (!Yii::$app->authManager->getAssignments($userId) == 'admin')
+            $auth->assign($user, $userId);
+        }
+
+
     }
 }
