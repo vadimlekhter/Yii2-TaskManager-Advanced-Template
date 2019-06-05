@@ -19,13 +19,6 @@ class RbacController extends Controller
         $auth->add($admin);
         $auth->addChild($admin, $user);
 
-//        $auth->assign($user, 2);
-//        $auth->assign($user, 3);
-//        $auth->assign($user, 4);
-//        $auth->assign($user, 5);
-//        $auth->assign($user, 6);
-//        $auth->assign($user, 1);
-
         $allUsersId = User::find()->select(['id'])->column();
 
         foreach ($allUsersId as $userId) {
