@@ -29,7 +29,5 @@ class RbacController extends Controller
             if (!Yii::$app->authManager->getAssignments($userId) == 'admin')
             $auth->assign($user, $userId);
         }
-
-
     }
 }
