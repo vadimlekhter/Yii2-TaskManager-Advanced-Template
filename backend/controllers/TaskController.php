@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\config\AuthItems;
 use Yii;
 use common\models\Task;
 use common\models\search\TaskSearch;
@@ -34,7 +35,7 @@ class TaskController extends Controller
                     [
                         'allow' => true,
 //                        'roles' => ['@'],
-                        'roles' => ['admin'],
+                        'roles' => [AuthItems::ROLE_ADMIN],
                     ],
                 ],
             ]

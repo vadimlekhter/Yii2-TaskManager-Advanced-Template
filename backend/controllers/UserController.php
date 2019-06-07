@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\config\AuthItems;
 use common\models\ProjectUser;
 use Yii;
 use common\models\User;
@@ -36,7 +37,7 @@ class UserController extends Controller
                     [
                         'allow' => true,
 //                        'roles' => ['@'],
-                        'roles' => ['admin'],
+                        'roles' => [AuthItems::ROLE_ADMIN],
                     ],
                 ],
             ]

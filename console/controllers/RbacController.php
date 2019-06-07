@@ -2,6 +2,7 @@
 
 namespace console\controllers;
 
+use common\config\AuthItems;
 use common\models\User;
 use Yii;
 use yii\console\Controller;
@@ -12,10 +13,10 @@ class RbacController extends Controller
     {
         $auth = Yii::$app->authManager;
 
-        $user = $auth->createRole('user');
+        $user = $auth->createRole(AuthItems::ROLE_USER);
         $auth->add($user);
 
-        $admin = $auth->createRole('admin');
+        $admin = $auth->createRole(AuthItems::ROLE_ADMIN);
         $auth->add($admin);
         $auth->addChild($admin, $user);
 
@@ -26,7 +27,7 @@ class RbacController extends Controller
         }
 
         foreach ($allUsersId as $userId) {
-            if (!Yii::$app->authManager->getAssignments($userId) == 'admin')
+            if (!Yii::$app->authManager->getAssignments($userId) == AuthItems::ROLE_ADMIN)
             $auth->assign($user, $userId);
         }
     }

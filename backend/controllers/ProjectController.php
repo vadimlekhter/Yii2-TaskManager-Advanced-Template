@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\config\AuthItems;
 use Yii;
 use common\models\Project;
 use common\models\search\ProjectSearch;
@@ -36,7 +37,7 @@ class ProjectController extends Controller
                     [
                         'allow' => true,
 //                        'roles' => ['@'],
-                        'roles' => ['admin'],
+                        'roles' => [AuthItems::ROLE_ADMIN],
                     ],
                 ],
             ]
