@@ -5,6 +5,7 @@ use yii\widgets\DetailView;
 use common\models\ProjectUser;
 use \common\models\Project;
 use \yii\grid\GridView;
+use \yii2mod\comments\widgets\Comment;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Project */
@@ -65,5 +66,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ]]);
     }
     ?>
+
+<!--    --><?php //echo Comment::widget([
+//        'model' => $model,
+//    ]); ?>
 
 </div>

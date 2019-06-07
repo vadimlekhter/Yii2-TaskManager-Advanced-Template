@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use  \common\models\User;
+use \yii2mod\comments\widgets\Comment;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\UserSearch */

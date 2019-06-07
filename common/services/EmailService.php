@@ -4,6 +4,7 @@
 namespace common\services;
 
 
+use common\interfaces\EmailServiceInterface;
 use Yii;
 use yii\base\Component;
 
@@ -11,7 +12,7 @@ use yii\base\Component;
  * Class EmailService
  * @package common\services
  */
-class EmailService extends Component
+class EmailService extends Component implements EmailServiceInterface
 {
     /**
      * @param $to string
@@ -19,7 +20,7 @@ class EmailService extends Component
      * @param $views array
      * @param $data array
      */
-    public function sendEmail($to, $subject, $views, $data)
+    public function send($to, $subject, $views, $data)
     {
         Yii::$app
             ->mailer

@@ -7,6 +7,7 @@ use yii\bootstrap\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\User */
 /* @var $form yii\bootstrap\ActiveForm */
+
 ?>
 
 <div class="user-form container">

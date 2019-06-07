@@ -28,6 +28,7 @@ use yii\web\IdentityInterface;
  * @property Project[] $createdProjects
  * @property Project[] $updatedProjects
  * @property ProjectUser[] $usersProject
+ * @mixin UploadImageBehavior
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -333,5 +334,15 @@ class User extends ActiveRecord implements IdentityInterface
     public function getUsersProject()
     {
         return $this->hasMany(ProjectUser::class, ['user_id' => 'id']);
+    }
+
+    public function getAvatar()
+    {
+        return $this->getThumbUploadUrl('avatar', self::AVATAR_ICO);
+    }
+
+    public function getUsername()
+    {
+        return $this->id;
     }
 }

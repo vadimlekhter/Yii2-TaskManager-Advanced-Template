@@ -13,6 +13,14 @@ return [
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
+        'i18n' => [
+            'translations' => [
+                'yii2mod.comments' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@yii2mod/comments/messages',
+                ],
+            ],
+        ],
         'authManager' => [
             'class' => 'yii\rbac\PhpManager',
             'itemFile' => '@console/rbac/items.php',
@@ -40,6 +48,9 @@ return [
     'modules' => [
         'chat' => [
             'class' => 'common\modules\chat\Module',
+        ],
+        'comment' => [
+            'class' => 'yii2mod\comments\Module',
         ],
     ],
 ];
