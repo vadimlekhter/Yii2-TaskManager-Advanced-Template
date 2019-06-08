@@ -4,9 +4,7 @@
 namespace common\services;
 
 use common\models\Project;
-use common\models\Task;
 use common\models\User;
-use Yii;
 use yii\base\Component;
 use yii\base\Event;
 
@@ -96,17 +94,5 @@ class ProjectService extends Component
     public function hasRole(Project $project, User $user, $role)
     {
         return in_array($role, $this->getRoles($project, $user));
-    }
-
-    /**
-     * @param Task $task
-     * @return bool
-     */
-    public function setExecutor(Task $task)
-    {
-        $task->executor_id = Yii::$app->user->id;
-        $task->started_at = time();
-
-        return $task->save();
     }
 }

@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //            ['class' => 'yii\grid\SerialColumn'],
 
 //            'id',
+            'project_id',
             [
                 'attribute' => 'Project title',
                 'value' => function (Task $model) {
@@ -40,13 +41,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'title',
             'description:ntext',
-            'project_id',
             ['attribute' => 'executor_id',
                 'value' => function (Task $model) {
                     if (!is_null($model->executor_id)) {
                         return Html::a($model->executor->username, ['user/view', 'id' => $model->executor_id]);
                     }
-                    return null;
+                    return 'Нет исполнителя';
                 },
                 'format' => 'html'
             ],
@@ -80,13 +80,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 'visibleButtons' => [
                     'update' => function (Task $model, $key, $index) {
-                        return Yii::$app->projectService->hasRole($model->project, Yii::$app->user->identity, ProjectUser::ROLE_MANAGER);
+                        return Yii::$app->taskService->canManage($model->project, Yii::$app->user->identity);
                     },
                     'delete' => function (Task $model, $key, $index) {
-                        return Yii::$app->projectService->hasRole($model->project, Yii::$app->user->identity, ProjectUser::ROLE_MANAGER);
+                        return Yii::$app->taskService->canManage($model->project, Yii::$app->user->identity);
                     },
                     'take' => function (Task $model, $key, $index) {
-                        return Yii::$app->projectService->hasRole($model->project, Yii::$app->user->identity, ProjectUser::ROLE_DEVELOPER);
+                        return Yii::$app->taskService->canTake($model, Yii::$app->user->identity);
                     }
                 ]
             ],

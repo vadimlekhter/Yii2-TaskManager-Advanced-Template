@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'Project title',
                 'value' => function (\common\models\Task $model) {
-                    return Html::a($model->project->title,  ['project/view', 'id' => $model->project_id]);
+                    return Html::a($model->project->title, ['project/view', 'id' => $model->project_id]);
                 },
                 'format' => 'html'
             ],
@@ -45,7 +45,10 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'Executor name',
                 'value' => function (\common\models\Task $model) {
-                    return Html::a($model->executor->username, ['user/view', 'id'=>$model->executor_id]);
+                    if (!is_null($model->executor_id)) {
+                        return Html::a($model->executor->username, ['user/view', 'id' => $model->executor_id]);
+                    }
+                    return 'Нет исполнителя';
                 },
                 'format' => 'html'
             ],
@@ -55,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'Creator username',
                 'value' => function (\common\models\Task $model) {
-                    return Html::a($model->creator->username, ['user/view', 'id'=>$model->creator_id]);
+                    return Html::a($model->creator->username, ['user/view', 'id' => $model->creator_id]);
                 },
                 'format' => 'html'
             ],
@@ -63,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'Updater username',
                 'value' => function (\common\models\Task $model) {
-                    return Html::a($model->updater->username, ['user/view', 'id'=>$model->updater_id]);
+                    return Html::a($model->updater->username, ['user/view', 'id' => $model->updater_id]);
                 },
                 'format' => 'html'
             ],

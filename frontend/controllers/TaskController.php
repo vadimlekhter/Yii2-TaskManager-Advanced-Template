@@ -150,7 +150,7 @@ class TaskController extends Controller
 
         $model = $this->findModel($id);
 
-        if (Yii::$app->projectService->setExecutor($model)) {
+        if (Yii::$app->taskService->takeTask($model, Yii::$app->user->identity)) {
             Yii::$app->session->setFlash('success', 'Вы взяли задачу');
             return $this->redirect(['task/view', 'id' => $model->id]);
         }

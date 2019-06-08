@@ -4,6 +4,7 @@ use common\services\ChangeRoleEvent;
 use common\services\ProjectService;
 use common\services\EmailService;
 use common\services\NotificationService;
+use common\services\TaskService;
 
 return [
     'aliases' => [
@@ -13,6 +14,9 @@ return [
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
+        'taskService' => [
+            'class' => TaskService::class
+        ],
         'i18n' => [
             'translations' => [
                 'yii2mod.comments' => [
