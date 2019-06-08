@@ -73,4 +73,23 @@ class ProjectService extends Component
         $event->role = $role;
         return $event;
     }
+
+    /**
+     * @param Project $project
+     * @param User $user
+     * @return array
+     */
+    public function getRoles (Project $project, User $user) {
+        return $project->getProjectUsers()->select('role')->where(['user_id' => $user->id])->column();
+    }
+
+    /**
+     * @param Project $project
+     * @param User $user
+     * @param string $role
+     * @return bool
+     */
+    public function hasRole (Project $project, User $user, $role) {
+        return in_array($role, $this->getRoles($project, $user));
+    }
 }

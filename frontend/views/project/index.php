@@ -29,9 +29,25 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
 //            ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'title',
-            'description:ntext',
+//            'id',
+            [
+                'attribute' => 'title',
+                'value' => function (Project $model) {
+                    return Html::a($model->title, ['project/view', 'id' => $model->id]);
+                },
+                'format' => 'html'
+            ],
+            [
+                'attribute' => 'description',
+                'value' => 'description',
+                'enableSorting' => false
+            ],
+            [
+                'attribute' => Project::RELATION_PROJECT_USERS . '.role',
+                'value' => function (Project $model) {
+                    return join(',', Yii::$app->projectService->getRoles($model, Yii::$app->user->identity));
+                }
+            ],
             [
                 'attribute' => 'active',
                 'content' => function ($model) {
@@ -39,12 +55,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'filter' => Project::STATUS_LABELS
             ],
-            'creator_id',
-            //'updater_id',
-            //'created_at',
-            //'updated_at',
+            [
+                'attribute' => 'creator_id',
+                'value' => function (Project $model) {
+                    return Html::a($model->creator->username, ['user/view', 'id' => $model->creator_id]);
+                },
+                'format' => 'html'
+            ],
+            [
+                'attribute' => 'updater_id',
+                'value' => function (Project $model) {
+                    return Html::a($model->updater->username, ['user/view', 'id' => $model->updater_id]);
+                },
+                'format' => 'html'
+            ],
+            'created_at:datetime',
+            'updated_at:datetime',
 
-            ['class' => 'yii\grid\ActionColumn'],
+//            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

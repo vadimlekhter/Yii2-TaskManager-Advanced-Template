@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\TaskSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -27,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
 //            ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+//            'id',
             'title',
             'description:ntext',
             'project_id',

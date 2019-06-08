@@ -7,6 +7,7 @@ use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use \common\models\query\UserQuery;
 
 /**
  * User model
@@ -336,13 +337,23 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->hasMany(ProjectUser::class, ['user_id' => 'id']);
     }
 
-//    public function getAvatar()
-//    {
-//        return $this->getThumbUploadUrl('avatar', self::AVATAR_ICO);
-//    }
-//
-//    public function getUsername()
-//    {
-//        return $this->id;
-//    }
+    /**
+     * {@inheritdoc}
+     * @return \common\models\query\UserQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new UserQuery(get_called_class());
+    }
+
+
+    public function getAvatar()
+    {
+        return $this->getThumbUploadUrl('avatar', self::AVATAR_ICO);
+    }
+
+    public function getUsername()
+    {
+        return $this->id;
+    }
 }
