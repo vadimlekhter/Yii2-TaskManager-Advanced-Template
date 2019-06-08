@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\config\AuthItems;
+use common\models\query\UserQuery;
 use Yii;
 use common\models\Task;
 use common\models\search\TaskSearch;
@@ -72,57 +73,57 @@ class TaskController extends Controller
         ]);
     }
 
-//    /**
-//     * Creates a new Task model.
-//     * If creation is successful, the browser will be redirected to the 'view' page.
-//     * @return mixed
-//     */
-//    public function actionCreate()
-//    {
-//        $model = new Task();
-//
-//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-//            return $this->redirect(['view', 'id' => $model->id]);
-//        }
-//
-//        return $this->render('create', [
-//            'model' => $model,
-//        ]);
-//    }
-//
-//    /**
-//     * Updates an existing Task model.
-//     * If update is successful, the browser will be redirected to the 'view' page.
-//     * @param integer $id
-//     * @return mixed
-//     * @throws NotFoundHttpException if the model cannot be found
-//     */
-//    public function actionUpdate($id)
-//    {
-//        $model = $this->findModel($id);
-//
-//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-//            return $this->redirect(['view', 'id' => $model->id]);
-//        }
-//
-//        return $this->render('update', [
-//            'model' => $model,
-//        ]);
-//    }
-//
-//    /**
-//     * Deletes an existing Task model.
-//     * If deletion is successful, the browser will be redirected to the 'index' page.
-//     * @param integer $id
-//     * @return mixed
-//     * @throws NotFoundHttpException if the model cannot be found
-//     */
-//    public function actionDelete($id)
-//    {
-//        $this->findModel($id)->delete();
-//
-//        return $this->redirect(['index']);
-//    }
+    /**
+     * Creates a new Task model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreate()
+    {
+        $model = new Task();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Updates an existing Task model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Deletes an existing Task model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
 
     /**
      * Finds the Task model based on its primary key value.
@@ -138,5 +139,21 @@ class TaskController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * @param int $id
+     * @return mixed
+     * @throws NotFoundHttpException
+     */
+    public function actionTake ($id) {
+
+        $model = $this->findModel($id);
+
+        if (Yii::$app->projectService->setExecutor($model)) {
+            Yii::$app->session->setFlash('success', 'Вы взяли задачу');
+            return $this->redirect(['task/view', 'id' => $model->id]);
+        }
+        return $this->render('update', ['model' => $model]);
     }
 }

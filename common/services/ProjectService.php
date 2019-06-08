@@ -4,7 +4,9 @@
 namespace common\services;
 
 use common\models\Project;
+use common\models\Task;
 use common\models\User;
+use Yii;
 use yii\base\Component;
 use yii\base\Event;
 
@@ -66,7 +68,8 @@ class ProjectService extends Component
      * @param string $role
      * @return ChangeRoleEvent $event
      */
-    private function createChangeRoleEvent (Project $project, User $user, $role) {
+    private function createChangeRoleEvent(Project $project, User $user, $role)
+    {
         $event = new ChangeRoleEvent();
         $event->project = $project;
         $event->user = $user;
@@ -79,8 +82,9 @@ class ProjectService extends Component
      * @param User $user
      * @return array
      */
-    public function getRoles (Project $project, User $user) {
-        return $project->getProjectUsers()->select('role')->where(['user_id' => $user->id])->column();
+    public function getRoles(Project $project, User $user)
+    {
+        return $project->getProjectUsers()->byUser($user->id)->select('role')->column();
     }
 
     /**
@@ -89,7 +93,20 @@ class ProjectService extends Component
      * @param string $role
      * @return bool
      */
-    public function hasRole (Project $project, User $user, $role) {
+    public function hasRole(Project $project, User $user, $role)
+    {
         return in_array($role, $this->getRoles($project, $user));
+    }
+
+    /**
+     * @param Task $task
+     * @return bool
+     */
+    public function setExecutor(Task $task)
+    {
+        $task->executor_id = Yii::$app->user->id;
+        $task->started_at = time();
+
+        return $task->save();
     }
 }

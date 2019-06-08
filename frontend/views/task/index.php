@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use \common\models\Task;
+use \common\models\ProjectUser;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\TaskSearch */
@@ -40,16 +41,24 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'description:ntext',
             'project_id',
-            'executor.username',
-            'started_at',
+            ['attribute' => 'executor_id',
+                'value' => function (Task $model) {
+                    if (!is_null($model->executor_id)) {
+                        return Html::a($model->executor->username, ['user/view', 'id' => $model->executor_id]);
+                    }
+                    return null;
+                },
+                'format' => 'html'
+            ],
+            'started_at:datetime',
             'completed_at',
-            ['attribute' => 'creator.username',
+            ['attribute' => 'creator_id',
                 'value' => function (Task $model) {
                     return Html::a($model->creator->username, ['user/view', 'id' => $model->creator_id]);
                 },
                 'format' => 'html'
             ],
-            ['attribute' => 'updater.username',
+            ['attribute' => 'updater_id',
                 'value' => function (Task $model) {
                     return Html::a($model->updater->username, ['user/view', 'id' => $model->updater_id]);
                 },
@@ -58,7 +67,29 @@ $this->params['breadcrumbs'][] = $this->title;
             'created_at:datetime',
             'updated_at:datetime',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update} {delete} {take}',
+                'buttons' => [
+                    'take' => function ($url, Task $model, $key) {
+                        $icon = \yii\bootstrap\Html::icon('hand-right');
+                        return Html::a($icon, ['task/take', 'id' => $model->id], ['data' => [
+                            'confirm' => 'Берете задачу?',
+                            'method' => 'post'
+                        ]]);
+                    }
+                ],
+                'visibleButtons' => [
+                    'update' => function (Task $model, $key, $index) {
+                        return Yii::$app->projectService->hasRole($model->project, Yii::$app->user->identity, ProjectUser::ROLE_MANAGER);
+                    },
+                    'delete' => function (Task $model, $key, $index) {
+                        return Yii::$app->projectService->hasRole($model->project, Yii::$app->user->identity, ProjectUser::ROLE_MANAGER);
+                    },
+                    'take' => function (Task $model, $key, $index) {
+                        return Yii::$app->projectService->hasRole($model->project, Yii::$app->user->identity, ProjectUser::ROLE_DEVELOPER);
+                    }
+                ]
+            ],
         ],
     ]); ?>
 

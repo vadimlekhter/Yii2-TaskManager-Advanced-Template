@@ -30,22 +30,50 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+//            'id',
             'title',
             'description:ntext',
-            'project_id',
-            'executor_id',
-            'started_at',
+//            'project_id',
+            [
+                'attribute' => 'Project title',
+                'value' => function (\common\models\Task $model) {
+                    return Html::a($model->project->title,  ['project/view', 'id' => $model->project_id]);
+                },
+                'format' => 'html'
+            ],
+//            'executor_id',
+            [
+                'attribute' => 'Executor name',
+                'value' => function (\common\models\Task $model) {
+                    return Html::a($model->executor->username, ['user/view', 'id'=>$model->executor_id]);
+                },
+                'format' => 'html'
+            ],
+            'started_at:datetime',
             'completed_at',
-            'creator_id',
-            'updater_id',
+//            'creator_id',
+            [
+                'attribute' => 'Creator username',
+                'value' => function (\common\models\Task $model) {
+                    return Html::a($model->creator->username, ['user/view', 'id'=>$model->creator_id]);
+                },
+                'format' => 'html'
+            ],
+//            'updater_id',
+            [
+                'attribute' => 'Updater username',
+                'value' => function (\common\models\Task $model) {
+                    return Html::a($model->updater->username, ['user/view', 'id'=>$model->updater_id]);
+                },
+                'format' => 'html'
+            ],
             'created_at:datetime',
             'updated_at:datetime',
         ],
     ]) ?>
 
-<!--    --><?php //echo Comment::widget([
-//        'model' => $model,
-//    ]); ?>
+    <!--    --><?php //echo Comment::widget([
+    //        'model' => $model,
+    //    ]); ?>
 
 </div>
