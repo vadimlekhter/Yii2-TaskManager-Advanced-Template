@@ -7,6 +7,7 @@ use common\models\Project;
 use common\models\ProjectUser;
 use common\models\Task;
 use common\models\User;
+use Yii;
 use yii\base\Component;
 
 /**

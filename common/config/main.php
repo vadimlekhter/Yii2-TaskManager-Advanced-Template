@@ -5,6 +5,7 @@ use common\services\ProjectService;
 use common\services\EmailService;
 use common\services\NotificationService;
 use common\services\TaskService;
+use common\services\UserService;
 
 return [
     'aliases' => [
@@ -16,6 +17,9 @@ return [
     'components' => [
         'taskService' => [
             'class' => TaskService::class
+        ],
+        'userService' => [
+            'class' => UserService::class
         ],
         'i18n' => [
             'translations' => [

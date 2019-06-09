@@ -6,6 +6,7 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 use \common\models\Task;
 use \common\models\User;
+use \common\models\ProjectUser;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\TaskSearch */
@@ -18,9 +19,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+
     <p>
-        <?= Html::a('Create Task', ['create'], ['class' => 'btn btn-success']) ?>
+
+        <?php
+
+        if (in_array(ProjectUser::ROLE_MANAGER, Yii::$app->userService->getRole())) {
+            echo Html::a('Create Task', ['create'], ['class' => 'btn btn-success']);
+        }
+
+        ?>
+
+
     </p>
+
 
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
