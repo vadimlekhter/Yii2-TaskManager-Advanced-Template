@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use \common\models\Project;
+use \common\models\User;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\ProjectSearch */
@@ -51,22 +52,30 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'filter' => Project::STATUS_LABELS
             ],
-            'creator_id',
-//            [
-//                'attribute' => 'creator_id',
-//                'value' => function (Project $model) {
-//                    return Html::a($model->creator->username, ['user/view', 'id' => $model->creator_id]);
-//                },
-//                'format' => 'html'
-//            ],
-            'updater_id',
-//            [
-//                'attribute' => 'updater_id',
-//                'value' => function (Project $model) {
-//                    return Html::a($model->updater->username, ['user/view', 'id' => $model->updater_id]);
-//                },
-//                'format' => 'html'
-//            ],
+            [
+                'attribute' => 'creator_id',
+                'label' => 'Creator Username',
+                'value' => function (Project $model) {
+                    return Html::a($model->creator->username, ['user/view', 'id' => $model->creator_id]);
+                },
+                'format' => 'html',
+                'filter' => User::find()
+                    ->select('username')
+                    ->indexBy('id')
+                    ->column(),
+            ],
+            [
+                'attribute' => 'updater_id',
+                'label' => 'Updater Username',
+                'value' => function (Project $model) {
+                    return Html::a($model->updater->username, ['user/view', 'id' => $model->updater_id]);
+                },
+                'format' => 'html',
+                'filter' => User::find()
+                    ->select('username')
+                    ->indexBy('id')
+                    ->column(),
+            ],
             'created_at:datetime',
             'updated_at:datetime',
 

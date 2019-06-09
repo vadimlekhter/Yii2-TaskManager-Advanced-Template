@@ -64,11 +64,10 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'executor_id',
 
             ['attribute' => 'executor_id',
+                'label' => 'Executor username',
                 'value' => function (Task $model) {
-                    if (!is_null($model->executor_id)) {
-                        return Html::a($model->executor->username, ['user/view', 'id' => $model->executor_id]);
-                    }
-                    return 'Нет';
+                    return (!is_null($model->executor_id)) ?
+                        Html::a($model->executor->username, ['user/view', 'id' => $model->executor_id]) : 'Нет';
                 },
                 'format' => 'html',
                 'filter' => User::find()
@@ -79,8 +78,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'started_at:datetime',
             'completed_at:datetime',
-//            'creator_id',
             ['attribute' => 'creator_id',
+                'label' => 'Creator username',
                 'value' => function (Task $model) {
                     return Html::a($model->creator->username, ['user/view', 'id' => $model->creator_id]);
                 },
@@ -93,6 +92,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 //            'updater_id',
             ['attribute' => 'updater_id',
+                'label' => 'Updater username',
                 'value' => function (Task $model) {
                     return Html::a($model->updater->username, ['user/view', 'id' => $model->updater_id]);
                 },
@@ -117,7 +117,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ]]);
                     },
                     'complete' => function ($url, Task $model, $key) {
-                        $icon = \yii\bootstrap\Html::icon('hand-up');
+                        $icon = \yii\bootstrap\Html::icon('ok');
                         return Html::a($icon, ['task/complete', 'id' => $model->id], ['data' => [
                             'confirm' => 'Завершить задачу?',
                             'method' => 'post'
