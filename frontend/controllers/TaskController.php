@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\config\AuthItems;
+use common\models\Project;
 use common\models\query\UserQuery;
 use Yii;
 use common\models\Task;
@@ -53,6 +54,8 @@ class TaskController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         $dataProvider->query->byUser(Yii::$app->user->id);
+
+//        var_dump(Project::find()->select('title')->asArray()->column()); exit();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -146,12 +149,29 @@ class TaskController extends Controller
      * @return mixed
      * @throws NotFoundHttpException
      */
-    public function actionTake ($id) {
+    public function actionTake($id)
+    {
 
         $model = $this->findModel($id);
 
         if (Yii::$app->taskService->takeTask($model, Yii::$app->user->identity)) {
             Yii::$app->session->setFlash('success', 'Вы взяли задачу');
+            return $this->redirect(['task/view', 'id' => $model->id]);
+        }
+        return $this->render('update', ['model' => $model]);
+    }
+
+    /**
+     * @param int $id
+     * @return mixed
+     * @throws NotFoundHttpException
+     */
+    public function actionComplete($id)
+    {
+        $model = $this->findModel($id);
+
+        if (Yii::$app->taskService->completeTask($model)) {
+            Yii::$app->session->setFlash('success', 'Задача завершена');
             return $this->redirect(['task/view', 'id' => $model->id]);
         }
         return $this->render('update', ['model' => $model]);

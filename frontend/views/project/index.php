@@ -16,10 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Project', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -55,24 +51,28 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'filter' => Project::STATUS_LABELS
             ],
-            [
-                'attribute' => 'creator_id',
-                'value' => function (Project $model) {
-                    return Html::a($model->creator->username, ['user/view', 'id' => $model->creator_id]);
-                },
-                'format' => 'html'
-            ],
-            [
-                'attribute' => 'updater_id',
-                'value' => function (Project $model) {
-                    return Html::a($model->updater->username, ['user/view', 'id' => $model->updater_id]);
-                },
-                'format' => 'html'
-            ],
+            'creator_id',
+//            [
+//                'attribute' => 'creator_id',
+//                'value' => function (Project $model) {
+//                    return Html::a($model->creator->username, ['user/view', 'id' => $model->creator_id]);
+//                },
+//                'format' => 'html'
+//            ],
+            'updater_id',
+//            [
+//                'attribute' => 'updater_id',
+//                'value' => function (Project $model) {
+//                    return Html::a($model->updater->username, ['user/view', 'id' => $model->updater_id]);
+//                },
+//                'format' => 'html'
+//            ],
             'created_at:datetime',
             'updated_at:datetime',
 
-//            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{view}'
+            ],
         ],
     ]); ?>
 

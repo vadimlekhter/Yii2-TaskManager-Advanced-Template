@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
 use yii\helpers\Html;
@@ -37,11 +38,11 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Project', 'url' => ['/project/index']],
-        ['label' => 'Task', 'url' => ['/task/index']],
-        ['label' => 'User', 'url' => ['/user/index']],
+        !Yii::$app->user->isGuest ? (['label' => 'Project', 'url' => ['/project/index']]) : '',
+        !Yii::$app->user->isGuest ? (['label' => 'Task', 'url' => ['/task/index']]) : '',
         ['label' => 'About', 'url' => ['/site/about']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
+        !Yii::$app->user->isGuest ? (['label' => 'Profile', 'url' => ['/user/profile']]) : '',
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];

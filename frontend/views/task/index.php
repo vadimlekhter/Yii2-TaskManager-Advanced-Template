@@ -1,10 +1,11 @@
 <?php
 
+use common\models\Project;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use \common\models\Task;
-use \common\models\ProjectUser;
+use \common\models\User;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\TaskSearch */
@@ -31,49 +32,82 @@ $this->params['breadcrumbs'][] = $this->title;
 //            ['class' => 'yii\grid\SerialColumn'],
 
 //            'id',
-            'project_id',
             [
-                'attribute' => 'Project title',
-                'value' => function (Task $model) {
+                'label' => 'Project title',
+                'attribute' => 'project_id',
+
+                'content' => function (Task $model) {
                     return Html::a($model->project->title, ['project/view', 'id' => $model->project_id]);
                 },
-                'format' => 'html'
+
+                'format' => 'html',
+                'filter' => Project::find()
+                    ->select('title')
+                    ->byUser(Yii::$app->user->id)
+                    ->indexBy('id')
+                    ->column(),
             ],
             'title',
             'description:ntext',
+//            'executor_id',
+
             ['attribute' => 'executor_id',
                 'value' => function (Task $model) {
                     if (!is_null($model->executor_id)) {
                         return Html::a($model->executor->username, ['user/view', 'id' => $model->executor_id]);
                     }
-                    return 'Нет исполнителя';
+                    return 'Нет';
                 },
-                'format' => 'html'
+                'format' => 'html',
+                'filter' => User::find()
+                    ->select('username')
+                    ->onlyActive()
+                    ->indexBy('id')
+                    ->column(),
             ],
             'started_at:datetime',
-            'completed_at',
+            'completed_at:datetime',
+//            'creator_id',
             ['attribute' => 'creator_id',
                 'value' => function (Task $model) {
                     return Html::a($model->creator->username, ['user/view', 'id' => $model->creator_id]);
                 },
-                'format' => 'html'
+                'format' => 'html',
+                'filter' => User::find()
+                    ->select('username')
+                    ->onlyActive()
+                    ->indexBy('id')
+                    ->column(),
             ],
+//            'updater_id',
             ['attribute' => 'updater_id',
                 'value' => function (Task $model) {
                     return Html::a($model->updater->username, ['user/view', 'id' => $model->updater_id]);
                 },
-                'format' => 'html'
+                'format' => 'html',
+                'filter' => User::find()
+                    ->select('username')
+                    ->onlyActive()
+                    ->indexBy('id')
+                    ->column(),
             ],
             'created_at:datetime',
             'updated_at:datetime',
 
             ['class' => 'yii\grid\ActionColumn',
-                'template' => '{view} {update} {delete} {take}',
+                'template' => '{view} {update} {delete} {take} {complete}',
                 'buttons' => [
                     'take' => function ($url, Task $model, $key) {
                         $icon = \yii\bootstrap\Html::icon('hand-right');
                         return Html::a($icon, ['task/take', 'id' => $model->id], ['data' => [
                             'confirm' => 'Берете задачу?',
+                            'method' => 'post'
+                        ]]);
+                    },
+                    'complete' => function ($url, Task $model, $key) {
+                        $icon = \yii\bootstrap\Html::icon('hand-up');
+                        return Html::a($icon, ['task/complete', 'id' => $model->id], ['data' => [
+                            'confirm' => 'Завершить задачу?',
                             'method' => 'post'
                         ]]);
                     }
@@ -87,6 +121,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                     'take' => function (Task $model, $key, $index) {
                         return Yii::$app->taskService->canTake($model, Yii::$app->user->identity);
+                    },
+                    'complete' => function (Task $model, $key, $index) {
+                        return Yii::$app->taskService->canComplete($model, Yii::$app->user->identity);
                     }
                 ]
             ],

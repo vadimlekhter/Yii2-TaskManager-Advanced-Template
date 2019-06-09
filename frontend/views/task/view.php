@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'html'
             ],
             'started_at:datetime',
-            'completed_at',
+            'completed_at:datetime',
 //            'creator_id',
             [
                 'attribute' => 'Creator username',
