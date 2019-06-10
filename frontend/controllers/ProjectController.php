@@ -3,7 +3,6 @@
 namespace frontend\controllers;
 
 use common\config\AuthItems;
-use common\models\query\ProjectQuery;
 use Yii;
 use common\models\Project;
 use common\models\search\ProjectSearch;

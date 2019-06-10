@@ -3,13 +3,13 @@
 namespace frontend\controllers;
 
 use common\config\AuthItems;
-use common\models\Project;
-use common\models\query\UserQuery;
+use common\models\ProjectUser;
 use Yii;
 use common\models\Task;
 use common\models\search\TaskSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -35,12 +35,33 @@ class TaskController extends Controller
                 'only' => ['index', 'view', 'create', 'update', 'delete'],
                 'rules' => [
                     [
+//                        'actions' => ['index', 'view'],
                         'allow' => true,
 //                        'roles' => ['@'],
                         'roles' => [AuthItems::ROLE_USER],
                     ],
+
+
+//                    [
+//                        'actions' => ['update', 'delete'],
+//                        'allow' => true,
+//                        'matchCallback' => function ($rule, $action) {
+//
+//            $projectId = ->project_id;
+////            var_dump($projectId);
+//            $roles = ProjectUser::find()->select('role')->where(['project_id'=>$projectId])->column();
+////            var_dump($roles);exit();
+//                            return in_array(ProjectUser::ROLE_MANAGER, $roles);
+//                        }
+//                    ],
+//                    [
+//                        'allow' => true,
+//                        'roles' => ['role_name'],
+//                    ],
+
+
                 ],
-            ]
+            ],
         ];
     }
 
@@ -77,11 +98,16 @@ class TaskController extends Controller
     /**
      * Creates a new Task model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @throws ForbiddenHttpException if user has no right for this action
      * @return mixed
      */
     public function actionCreate()
     {
         $model = new Task();
+
+        if (!in_array(ProjectUser::ROLE_MANAGER, Yii::$app->userService->getAllRoles())) {
+            throw new ForbiddenHttpException();
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -98,10 +124,15 @@ class TaskController extends Controller
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws ForbiddenHttpException if user has no right for this action
      */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
+        if (!Yii::$app->taskService->canManage($model->project, Yii::$app->user->identity)) {
+            throw new ForbiddenHttpException();
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -118,10 +149,19 @@ class TaskController extends Controller
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws ForbiddenHttpException if user has no right for this action
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+
+        if (!Yii::$app->taskService->canManage($model->project, Yii::$app->user->identity)) {
+            throw new ForbiddenHttpException();
+        }
+
+        $model->delete();
+
+
 
         return $this->redirect(['index']);
     }
@@ -146,11 +186,16 @@ class TaskController extends Controller
      * @param int $id
      * @return mixed
      * @throws NotFoundHttpException
+     * @throws ForbiddenHttpException if user has no right for this action
      */
     public function actionTake($id)
     {
 
         $model = $this->findModel($id);
+
+        if (!Yii::$app->taskService->canTake($model, Yii::$app->user->identity)) {
+            throw new ForbiddenHttpException();
+        }
 
         if (Yii::$app->taskService->takeTask($model, Yii::$app->user->identity)) {
             Yii::$app->session->setFlash('success', 'Вы взяли задачу');
@@ -163,10 +208,15 @@ class TaskController extends Controller
      * @param int $id
      * @return mixed
      * @throws NotFoundHttpException
+     * @throws ForbiddenHttpException if user has no right for this action
      */
     public function actionComplete($id)
     {
         $model = $this->findModel($id);
+
+        if (!Yii::$app->taskService->canComplete($model, Yii::$app->user->identity)) {
+            throw new ForbiddenHttpException();
+        }
 
         if (Yii::$app->taskService->completeTask($model)) {
             Yii::$app->session->setFlash('success', 'Задача завершена');
