@@ -55,8 +55,6 @@ class TaskController extends Controller
 
         $dataProvider->query->byUser(Yii::$app->user->id);
 
-//        var_dump(Project::find()->select('title')->asArray()->column()); exit();
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

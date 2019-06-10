@@ -18,10 +18,10 @@ class UserService extends Component
     /**
      * @return array
      */
-    public function getRole () {
+    public function getAllRoles () {
         return ProjectUser::find()
             ->select('role')
-            ->where(['user_id' => Yii::$app->user->id])
+            ->byUser(Yii::$app->user->id)
             ->column();
     }
 }

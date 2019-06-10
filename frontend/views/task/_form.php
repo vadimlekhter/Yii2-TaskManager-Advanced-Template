@@ -19,6 +19,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'project_id')
         ->dropDownList(\common\models\Project::find()
             ->select('title')
+            ->byUser(Yii::$app->user->id, \common\models\ProjectUser::ROLE_MANAGER)
             ->indexBy('id')
             ->column()) ?>
 

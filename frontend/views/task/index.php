@@ -21,16 +21,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <p>
-
         <?php
-
-        if (in_array(ProjectUser::ROLE_MANAGER, Yii::$app->userService->getRole())) {
+        if (in_array(ProjectUser::ROLE_MANAGER, Yii::$app->userService->getAllRoles())) {
             echo Html::a('Create Task', ['create'], ['class' => 'btn btn-success']);
         }
-
         ?>
-
-
     </p>
 
 
