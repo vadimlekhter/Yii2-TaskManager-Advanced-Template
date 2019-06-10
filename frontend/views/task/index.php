@@ -56,7 +56,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'title',
             'description:ntext',
-//            'executor_id',
 
             ['attribute' => 'executor_id',
                 'label' => 'Executor username',
@@ -68,6 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => User::find()
                     ->select('username')
                     ->onlyActive()
+                    ->andRole(ProjectUser::ROLE_DEVELOPER)
                     ->indexBy('id')
                     ->column(),
             ],
@@ -82,10 +82,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => User::find()
                     ->select('username')
                     ->onlyActive()
+                    ->andRole(ProjectUser::ROLE_MANAGER)
                     ->indexBy('id')
                     ->column(),
             ],
-//            'updater_id',
             ['attribute' => 'updater_id',
                 'label' => 'Updater username',
                 'value' => function (Task $model) {
@@ -95,6 +95,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => User::find()
                     ->select('username')
                     ->onlyActive()
+                    ->andRole(ProjectUser::ROLE_MANAGER)
+                    ->orRole(ProjectUser::ROLE_DEVELOPER)
                     ->indexBy('id')
                     ->column(),
             ],
