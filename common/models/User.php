@@ -346,12 +346,12 @@ class User extends ActiveRecord implements IdentityInterface
         return new UserQuery(get_called_class());
     }
 
-
+//https://github.com/yii2mod/yii2-comments
     public function getAvatar()
     {
         return $this->getThumbUploadUrl('avatar', self::AVATAR_ICO);
     }
-
+//https://github.com/yii2mod/yii2-comments
     public function getUsername()
     {
         return $this->id;

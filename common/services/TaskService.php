@@ -9,6 +9,26 @@ use common\models\Task;
 use common\models\User;
 use Yii;
 use yii\base\Component;
+use yii\base\Event;
+
+/**
+ * Class TakeTaskEvent
+ * @package common\services
+ */
+class TakeCompleteTaskEvent extends Event {
+    /**
+     * @var Project $project
+     */
+    public $project;
+    /**
+     * @var User $user
+     */
+    public $user;
+    /**
+     * @var Task $task
+     */
+    public $task;
+}
 
 /**
  * Class TaskService
@@ -16,6 +36,9 @@ use yii\base\Component;
  */
 class TaskService extends Component
 {
+    const EVENT_TAKE_TASK = 'event_take_task';
+    const EVENT_COMPLETE_TASK = 'event_complete_task';
+
     /**
      * @param Project $project
      * @param User $user
@@ -69,5 +92,37 @@ class TaskService extends Component
         $task->completed_at = time();
 
         return $task->save();
+    }
+
+    /**
+     * @param Project $project
+     * @param User $user
+     * @param Task $task
+     */
+    public function eventTakeTask (Project $project, User $user, Task $task)
+    {
+        $event = $this->createTakeCompleteTaskEvent($project, $user, $task);
+        $this->trigger(self::EVENT_TAKE_TASK, $event);
+    }
+
+    public function eventCompleteTask (Project $project, User $user, Task $task)
+    {
+        $event = $this->createTakeCompleteTaskEvent($project, $user, $task);
+        $this->trigger(self::EVENT_COMPLETE_TASK, $event);
+    }
+
+    /**
+     * @param Project $project
+     * @param User $user
+     * @param Task $task
+     * @return TakeCompleteTaskEvent
+     */
+    private function createTakeCompleteTaskEvent(Project $project, User $user, Task $task)
+    {
+        $event = new TakeCompleteTaskEvent();
+        $event->project = $project;
+        $event->user = $user;
+        $event->task = $task;
+        return $event;
     }
 }

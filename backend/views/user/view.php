@@ -73,8 +73,9 @@ $this->params['breadcrumbs'][] = $this->title;
     }
     ?>
 
-<!--    --><?php //echo Comment::widget([
-//        'model' => $model,
-//    ]); ?>
+    <!--    https://github.com/yii2mod/yii2-comments-->
+    <?php echo Comment::widget([
+        'model' => $model,
+    ]); ?>
 
 </div>

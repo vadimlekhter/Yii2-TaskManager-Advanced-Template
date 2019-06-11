@@ -25,6 +25,30 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+
+
+        <?php
+        if (Yii::$app->taskService->canTake($model, Yii::$app->user->identity)) {
+            echo Html::a('Take', ['task/take', 'id' => $model->id], [
+                'class' => 'btn btn-info',
+                'data' => [
+                    'confirm' => 'Take task?',
+                    'method' => 'post',
+                ],
+            ]);
+        }
+        if (Yii::$app->taskService->canComplete($model, Yii::$app->user->identity)) {
+            echo Html::a('Complete', ['task/complete', 'id' => $model->id], [
+                'class' => 'btn btn-success',
+                'data' => [
+                    'confirm' => 'Take task?',
+                    'method' => 'post',
+                ],
+            ]);
+        }
+        ?>
+
+
     </p>
 
     <?= DetailView::widget([
@@ -75,8 +99,10 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
-    <!--    --><?php //echo Comment::widget([
-    //        'model' => $model,
-    //    ]); ?>
+    <!--    https://github.com/yii2mod/yii2-comments-->
+    <?php echo Comment::widget([
+        'model' => $model,
+    ]); ?>
+
 
 </div>

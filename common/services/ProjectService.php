@@ -4,6 +4,7 @@
 namespace common\services;
 
 use common\models\Project;
+use common\models\ProjectUser;
 use common\models\User;
 use Yii;
 use yii\base\Component;
@@ -15,7 +16,6 @@ use yii\base\Event;
  */
 class ChangeRoleEvent extends Event
 {
-
     /**
      * @var Project $project
      */
@@ -83,7 +83,8 @@ class ProjectService extends Component
      */
     public function getRoles(Project $project, User $user)
     {
-        return $project->getProjectUsers()
+        return $project
+            ->getProjectUsers()
             ->byUser($user->id)
             ->select('role')
             ->column();
@@ -98,5 +99,19 @@ class ProjectService extends Component
     public function hasRole(Project $project, User $user, $role)
     {
         return in_array($role, $this->getRoles($project, $user));
+    }
+
+    /**
+     * @param Project $project
+     * @param string $role
+     * @return array
+     */
+    public function getUsersIdbyRoleInProject(Project $project, $role)
+    {
+        return $project
+            ->getProjectUsers()
+            ->select('user_id')
+            ->where(['role' => $role])
+            ->column();
     }
 }

@@ -109,14 +109,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     'take' => function ($url, Task $model, $key) {
                         $icon = \yii\bootstrap\Html::icon('hand-right');
                         return Html::a($icon, ['task/take', 'id' => $model->id], ['data' => [
-                            'confirm' => 'Берете задачу?',
+                            'confirm' => 'Take task?',
                             'method' => 'post'
                         ]]);
                     },
                     'complete' => function ($url, Task $model, $key) {
                         $icon = \yii\bootstrap\Html::icon('ok');
                         return Html::a($icon, ['task/complete', 'id' => $model->id], ['data' => [
-                            'confirm' => 'Завершить задачу?',
+                            'confirm' => 'Complete task?',
                             'method' => 'post'
                         ]]);
                     }

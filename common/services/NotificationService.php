@@ -6,6 +6,7 @@ namespace common\services;
 use common\interfaces\EmailServiceInterface;
 use common\models\Project;
 use common\models\User;
+use common\models\Task;
 use Yii;
 use yii\base\Component;
 
@@ -53,5 +54,29 @@ class NotificationService extends Component
         $views = ['html' => 'cancelUserRole-html', 'text' => 'cancelUserRole-text'];
         $data = ['user' => $user, 'project' => $project, 'role' => $role];
         $this->emailService->send($user->email, 'Cancel role', $views, $data);
+    }
+
+    /**
+     * Email to developer & managers about taken task
+     * @param User $user
+     * @param Project $project
+     * @param Task $task
+     */
+    public function sendTakeTaskEmail ($user, $project, $task) {
+        $views = ['html' => 'takeTask-html', 'text' => 'takeTask-text'];
+        $data = ['user' => $user, 'project' => $project, 'task' => $task];
+        $this->emailService->send($user->email, 'Taken task', $views, $data);
+    }
+
+    /**
+     * Email to developer & managers about completed task
+     * @param User $user
+     * @param Project $project
+     * @param Task $task
+     */
+    public function sendCompleteTaskEmail ($user, $project, $task) {
+        $views = ['html' => 'completeTask-html', 'text' => 'completeTask-text'];
+        $data = ['user' => $user, 'project' => $project, 'task' => $task];
+        $this->emailService->send($user->email, 'Completed task', $views, $data);
     }
 }

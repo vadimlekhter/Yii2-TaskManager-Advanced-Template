@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\config\AuthItems;
 use common\models\ProjectUser;
+use frontend\modules\api\models\User;
 use Yii;
 use common\models\Task;
 use common\models\search\TaskSearch;
@@ -113,7 +114,7 @@ class TaskController extends Controller
      * Creates a new Task model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
-//     * @throws ForbiddenHttpException if user has no right for this action
+     * //     * @throws ForbiddenHttpException if user has no right for this action
      */
     public function actionCreate()
     {
@@ -138,7 +139,7 @@ class TaskController extends Controller
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
-//     * @throws ForbiddenHttpException if user has no right for this action
+     * //     * @throws ForbiddenHttpException if user has no right for this action
      */
     public function actionUpdate($id)
     {
@@ -163,7 +164,7 @@ class TaskController extends Controller
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
-//     * @throws ForbiddenHttpException if user has no right for this action
+     * //     * @throws ForbiddenHttpException if user has no right for this action
      */
     public function actionDelete($id)
     {
@@ -199,7 +200,7 @@ class TaskController extends Controller
      * @param int $id
      * @return mixed
      * @throws NotFoundHttpException
-//     * @throws ForbiddenHttpException if user has no right for this action
+     * //     * @throws ForbiddenHttpException if user has no right for this action
      */
     public function actionTake($id)
     {
@@ -211,6 +212,18 @@ class TaskController extends Controller
 //        }
 
         if (Yii::$app->taskService->takeTask($model, Yii::$app->user->identity)) {
+
+
+            Yii::$app->taskService->eventTakeTask($model->project, Yii::$app->user->identity, $model);
+
+            foreach (Yii::$app->projectService->getUsersIdbyRoleInProject($model->project, ProjectUser::ROLE_MANAGER) as $id) {
+                Yii::$app->taskService->eventTakeTask($model->project, User::findOne($id), $model);
+            }
+
+            foreach (Yii::$app->projectService->getUsersIdbyRoleInProject($model->project, ProjectUser::ROLE_TESTER) as $id) {
+                Yii::$app->taskService->eventTakeTask($model->project, User::findOne($id), $model);
+            }
+
             Yii::$app->session->setFlash('success', 'Вы взяли задачу');
             return $this->redirect(['task/view', 'id' => $model->id]);
         }
@@ -221,7 +234,7 @@ class TaskController extends Controller
      * @param int $id
      * @return mixed
      * @throws NotFoundHttpException
-//     * @throws ForbiddenHttpException if user has no right for this action
+     * //     * @throws ForbiddenHttpException if user has no right for this action
      */
     public function actionComplete($id)
     {
@@ -232,6 +245,17 @@ class TaskController extends Controller
 //        }
 
         if (Yii::$app->taskService->completeTask($model)) {
+
+            Yii::$app->taskService->eventCompleteTask($model->project, Yii::$app->user->identity, $model);
+
+            foreach (Yii::$app->projectService->getUsersIdbyRoleInProject($model->project, ProjectUser::ROLE_MANAGER) as $id) {
+                Yii::$app->taskService->eventcompleteTask($model->project, User::findOne($id), $model);
+            }
+
+            foreach (Yii::$app->projectService->getUsersIdbyRoleInProject($model->project, ProjectUser::ROLE_TESTER) as $id) {
+                Yii::$app->taskService->eventcompleteTask($model->project, User::findOne($id), $model);
+            }
+
             Yii::$app->session->setFlash('success', 'Задача завершена');
             return $this->redirect(['task/view', 'id' => $model->id]);
         }
