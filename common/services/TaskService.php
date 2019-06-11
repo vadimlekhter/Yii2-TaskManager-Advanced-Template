@@ -57,14 +57,15 @@ class TaskService extends Component
      */
     public function canComplete(Task $task, User $user)
     {
-        return (\Yii::$app->user->id===$task->executor_id)&&is_null($task->completed_at);
+        return (\Yii::$app->user->id === $task->executor_id) && is_null($task->completed_at);
     }
 
     /**
      * @param Task $task
      * @return bool
      */
-    public function CompleteTask (Task $task) {
+    public function CompleteTask(Task $task)
+    {
         $task->completed_at = time();
 
         return $task->save();

@@ -6,6 +6,7 @@ use common\services\EmailService;
 use common\services\NotificationService;
 use common\services\TaskService;
 use common\services\UserService;
+use common\services\CommonService;
 
 return [
     'aliases' => [
@@ -15,6 +16,9 @@ return [
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
+        'commonService' => [
+            'class' => CommonService::class
+        ],
         'taskService' => [
             'class' => TaskService::class
         ],
