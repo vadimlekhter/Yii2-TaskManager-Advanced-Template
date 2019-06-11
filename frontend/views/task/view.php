@@ -101,8 +101,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <!--    https://github.com/yii2mod/yii2-comments-->
     <?php echo Comment::widget([
-        'model' => $model,
-    ]); ?>
+            'model' => $model,
+        ]); ?>
 
 
 </div>
