@@ -214,7 +214,7 @@ class TaskController extends Controller
             Yii::$app->session->setFlash('success', 'Вы взяли задачу');
             return $this->redirect(['task/view', 'id' => $model->id]);
         }
-//        return $this->render('update', ['model' => $model]);
+        return $this->render('update', ['model' => $model]);
     }
 
     /**
@@ -238,7 +238,7 @@ class TaskController extends Controller
             Yii::$app->session->setFlash('success', 'Задача завершена');
             return $this->redirect(['task/view', 'id' => $model->id]);
         }
-//        return $this->render('update', ['model' => $model]);
+        return $this->render('update', ['model' => $model]);
     }
 
     /**
