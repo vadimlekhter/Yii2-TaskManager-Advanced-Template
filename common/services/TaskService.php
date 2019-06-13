@@ -95,20 +95,41 @@ class TaskService extends Component
     }
 
     /**
-     * @param Project $project
-     * @param User $user
      * @param Task $task
      */
-    public function eventTakeTask (Project $project, User $user, Task $task)
-    {
-        $event = $this->createTakeCompleteTaskEvent($project, $user, $task);
+    public  function sendEmailTakeTask ($task) {
+
+        $event = $this->createTakeCompleteTaskEvent($task->project, Yii::$app->user->identity, $task);
         $this->trigger(self::EVENT_TAKE_TASK, $event);
+
+        foreach (Yii::$app->projectService->getUsersIdbyRoleInProject($task->project, ProjectUser::ROLE_MANAGER) as $id) {
+            $event = $this->createTakeCompleteTaskEvent($task->project, User::findOne($id), $task);
+            $this->trigger(self::EVENT_TAKE_TASK, $event);
+        }
+
+        foreach (Yii::$app->projectService->getUsersIdbyRoleInProject($task->project, ProjectUser::ROLE_TESTER) as $id) {
+            $event = $this->createTakeCompleteTaskEvent($task->project, User::findOne($id), $task);
+            $this->trigger(self::EVENT_TAKE_TASK, $event);
+        }
     }
 
-    public function eventCompleteTask (Project $project, User $user, Task $task)
-    {
-        $event = $this->createTakeCompleteTaskEvent($project, $user, $task);
+    /**
+     * @param Task $task
+     */
+    public function sendEmailCompleteTask ($task) {
+
+        $event = $this->createTakeCompleteTaskEvent($task->project, Yii::$app->user->identity, $task);
         $this->trigger(self::EVENT_COMPLETE_TASK, $event);
+
+        foreach (Yii::$app->projectService->getUsersIdbyRoleInProject($task->project, ProjectUser::ROLE_MANAGER) as $id) {
+            $event = $this->createTakeCompleteTaskEvent($task->project, User::findOne($id), $task);
+            $this->trigger(self::EVENT_COMPLETE_TASK, $event);
+        }
+
+        foreach (Yii::$app->projectService->getUsersIdbyRoleInProject($task->project, ProjectUser::ROLE_TESTER) as $id) {
+            $event = $this->createTakeCompleteTaskEvent($task->project, User::findOne($id), $task);
+            $this->trigger(self::EVENT_COMPLETE_TASK, $event);
+        }
     }
 
     /**

@@ -52,8 +52,7 @@ class TaskController extends Controller
                         'actions' => ['update', 'delete'],
                         'allow' => true,
                         'matchCallback' => function ($rule, $action) {
-                            $id = Yii::$app->commonService->getRequestId();
-                            $task = $this->findModel($id);
+                            $task = $this->findModel($this->getRequestId());
                             return Yii::$app->taskService->canManage($task->project, Yii::$app->user->identity);
                         }
                     ],
@@ -61,8 +60,7 @@ class TaskController extends Controller
                         'actions' => ['take'],
                         'allow' => true,
                         'matchCallback' => function ($rule, $action) {
-                            $id = Yii::$app->commonService->getRequestId();
-                            $task = $this->findModel($id);
+                            $task = $this->findModel($this->getRequestId());
                             return Yii::$app->taskService->canTake($task, Yii::$app->user->identity);
                         }
                     ],
@@ -70,8 +68,7 @@ class TaskController extends Controller
                         'actions' => ['complete'],
                         'allow' => true,
                         'matchCallback' => function ($rule, $action) {
-                            $id = Yii::$app->commonService->getRequestId();
-                            $task = $this->findModel($id);
+                            $task = $this->findModel($this->getRequestId());
                             return Yii::$app->taskService->canComplete($task, Yii::$app->user->identity);
                         }
                     ],
@@ -114,7 +111,7 @@ class TaskController extends Controller
      * Creates a new Task model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
-     * //     * @throws ForbiddenHttpException if user has no right for this action
+     * @throws ForbiddenHttpException if user has no right for this action
      */
     public function actionCreate()
     {
@@ -139,7 +136,7 @@ class TaskController extends Controller
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
-     * //     * @throws ForbiddenHttpException if user has no right for this action
+     * @throws ForbiddenHttpException if user has no right for this action
      */
     public function actionUpdate($id)
     {
@@ -164,7 +161,7 @@ class TaskController extends Controller
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
-     * //     * @throws ForbiddenHttpException if user has no right for this action
+     * @throws ForbiddenHttpException if user has no right for this action
      */
     public function actionDelete($id)
     {
@@ -200,11 +197,10 @@ class TaskController extends Controller
      * @param int $id
      * @return mixed
      * @throws NotFoundHttpException
-     * //     * @throws ForbiddenHttpException if user has no right for this action
+     * @throws ForbiddenHttpException if user has no right for this action
      */
     public function actionTake($id)
     {
-
         $model = $this->findModel($id);
 
 //        if (!Yii::$app->taskService->canTake($model, Yii::$app->user->identity)) {
@@ -213,28 +209,19 @@ class TaskController extends Controller
 
         if (Yii::$app->taskService->takeTask($model, Yii::$app->user->identity)) {
 
-
-            Yii::$app->taskService->eventTakeTask($model->project, Yii::$app->user->identity, $model);
-
-            foreach (Yii::$app->projectService->getUsersIdbyRoleInProject($model->project, ProjectUser::ROLE_MANAGER) as $id) {
-                Yii::$app->taskService->eventTakeTask($model->project, User::findOne($id), $model);
-            }
-
-            foreach (Yii::$app->projectService->getUsersIdbyRoleInProject($model->project, ProjectUser::ROLE_TESTER) as $id) {
-                Yii::$app->taskService->eventTakeTask($model->project, User::findOne($id), $model);
-            }
+            Yii::$app->taskService->sendEmailTakeTask ($model);
 
             Yii::$app->session->setFlash('success', 'Вы взяли задачу');
             return $this->redirect(['task/view', 'id' => $model->id]);
         }
-        return $this->render('update', ['model' => $model]);
+//        return $this->render('update', ['model' => $model]);
     }
 
     /**
      * @param int $id
      * @return mixed
      * @throws NotFoundHttpException
-     * //     * @throws ForbiddenHttpException if user has no right for this action
+     * @throws ForbiddenHttpException if user has no right for this action
      */
     public function actionComplete($id)
     {
@@ -246,19 +233,21 @@ class TaskController extends Controller
 
         if (Yii::$app->taskService->completeTask($model)) {
 
-            Yii::$app->taskService->eventCompleteTask($model->project, Yii::$app->user->identity, $model);
-
-            foreach (Yii::$app->projectService->getUsersIdbyRoleInProject($model->project, ProjectUser::ROLE_MANAGER) as $id) {
-                Yii::$app->taskService->eventcompleteTask($model->project, User::findOne($id), $model);
-            }
-
-            foreach (Yii::$app->projectService->getUsersIdbyRoleInProject($model->project, ProjectUser::ROLE_TESTER) as $id) {
-                Yii::$app->taskService->eventcompleteTask($model->project, User::findOne($id), $model);
-            }
+            Yii::$app->taskService->sendEmailCompleteTask($model);
 
             Yii::$app->session->setFlash('success', 'Задача завершена');
             return $this->redirect(['task/view', 'id' => $model->id]);
         }
-        return $this->render('update', ['model' => $model]);
+//        return $this->render('update', ['model' => $model]);
+    }
+
+    /**
+     * @return int
+     */
+    public function getRequestId()
+    {
+        $id = Yii::$app->request->get('id');
+        $id = isset($id) ? $id : Yii::$app->request->post('id');
+        return $id;
     }
 }
