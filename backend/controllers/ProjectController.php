@@ -112,18 +112,21 @@ class ProjectController extends Controller
 
         $users = User::find()->select('username')->indexBy('id')->column();
 
-        $usersRoles = $model->getUserRoles();
+//        $usersRoles = $model->getUserRoles();
 
-        if ($this->loadModel($model) && $model->save()) {
-            if ($newRoles = array_diff_assoc($model->getUserRoles(), $usersRoles)) {
-                foreach ($newRoles as $userId => $newRole) {
-                    Yii::$app->projectService->assignRole($model, User::findOne($userId), $newRole);
-                }
-            } elseif ($oldRoles = array_diff_assoc($usersRoles, $model->getUserRoles())) {
-                foreach ($oldRoles as $userId => $oldRole) {
-                    Yii::$app->projectService->cancelRole($model, User::findOne($userId), $oldRole);
-                }
-            };
+        if ($this->loadModel($model) && Yii::$app->projectService->sendEmailAssignCancelRole($model)) {
+
+//            Yii::$app->projectService->sendEmailAssignCancelRole($model);
+
+//            if ($newRoles = array_diff_assoc($model->getUserRoles(), $usersRoles)) {
+//                foreach ($newRoles as $userId => $newRole) {
+//                    Yii::$app->projectService->assignRole($model, User::findOne($userId), $newRole);
+//                }
+//            } elseif ($oldRoles = array_diff_assoc($usersRoles, $model->getUserRoles())) {
+//                foreach ($oldRoles as $userId => $oldRole) {
+//                    Yii::$app->projectService->cancelRole($model, User::findOne($userId), $oldRole);
+//                }
+//            };
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

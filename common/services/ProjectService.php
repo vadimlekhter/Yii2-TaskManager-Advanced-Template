@@ -41,6 +41,29 @@ class ProjectService extends Component
 
     /**
      * @param Project $project
+     * @return bool
+     */
+    public function sendEmailAssignCancelRole(Project $project)
+    {
+        $usersRoles = $project->getUserRoles();
+
+        if ($project->save()) {
+            if ($newRoles = array_diff_assoc($project->getUserRoles(), $usersRoles)) {
+                foreach ($newRoles as $userId => $newRole) {
+                    $this->assignRole($project, User::findOne($userId), $newRole);
+                }
+            } elseif ($oldRoles = array_diff_assoc($usersRoles, $project->getUserRoles())) {
+                foreach ($oldRoles as $userId => $oldRole) {
+                    $this->cancelRole($project, User::findOne($userId), $oldRole);
+                }
+            }
+            return true;
+        } else
+            return false;
+    }
+
+    /**
+     * @param Project $project
      * @param User $user
      * @param string $role
      */
