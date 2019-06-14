@@ -1,0 +1,78 @@
+# For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection).
+#
+# Following HTTP Request Live Templates are available:
+# * 'gtrp' and 'gtr' create a GET request with or without query parameters;
+# * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
+# * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
+
+GET http://y2aa-frontend.test/api/projects?expand=tasks
+Accept: application/json
+
+###
+
+GET http://y2aa-frontend.test/api/tasks?page=2&expand=project,creator
+Accept: application/json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+
+{
+  "title": "Project 3",
+  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+}
+
+###
+
+DELETE http://y2aa-frontend.test/api/projects/5
+Content-Type: application/json
+
+###
+
+PUT http://y2aa-frontend.test/api/projects/4
+Content-Type: application/json
+
+{
+  "title": "Project 3333",
+  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+}
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 1
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+
+{
+  "title": "Project 3",
+  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+}
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "Project 3",
+  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+}
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+###

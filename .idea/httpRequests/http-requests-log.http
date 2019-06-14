@@ -1,0 +1,455 @@
+GET http://y2aa-frontend.test/api/tasks?page=2&expand=project,creator
+Accept: application/json
+
+<> 2019-05-28T034230.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects?expand=tasks
+Accept: application/json
+
+<> 2019-05-28T034215.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects?expand=tasks
+Accept: application/json
+
+<> 2019-05-28T033232.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/tasks?page=2&expand=project,creator
+Accept: application/json
+
+<> 2019-05-28T032547.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/tasks?page=2&expand=project,creator
+Accept: application/json
+
+<> 2019-05-28T030632.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects?expand=tasks
+Accept: application/json
+
+<> 2019-05-28T030605.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects?expand=tasks
+Accept: application/json
+
+<> 2019-05-28T030437.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects?expand=tasks
+Accept: application/json
+
+<> 2019-05-28T030058.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/tasks?page=2&expand=project,creator
+Accept: application/json
+
+<> 2019-05-28T025941.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/tasks?page=2&expand=project
+Accept: application/json
+
+<> 2019-05-28T025912.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/tasks?page=2&expand=project
+Accept: application/json
+
+<> 2019-05-28T025615.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/tasks?page=2&expand=project
+Accept: application/json
+
+<> 2019-05-28T024919.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+
+<> 2019-05-28T024550.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+
+<> 2019-05-28T024211.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+
+<> 2019-05-28T024122.500.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T124630.201.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T123918.500.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T123912.500.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 1
+
+<> 2019-05-27T123851.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+
+<> 2019-05-27T123548.401.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 1
+
+<> 2019-05-27T123540.200.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T123506.201.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T123034.201.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 1
+
+<> 2019-05-27T123019.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 1
+
+<> 2019-05-27T122925.200.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T122910.500.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T122850.201.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T122808.500.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T122727.201.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T122659.201.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T122543.201.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T122510.500.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T122451.500.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 1
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T122324.201.json
+
+###
+
+POST http://y2aa-frontend.test/api/projects
+Content-Type: application/json
+Authorization: Bearer 12
+
+{
+  "title": "New Project 111",
+  "description": "Project Description"
+}
+
+<> 2019-05-27T122315.401.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 16
+
+<> 2019-05-27T122233.401.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 1
+
+<> 2019-05-27T122226.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 14
+
+<> 2019-05-27T122209.401.json
+
+###
+
+GET http://y2aa-frontend.test/api/tasks
+Accept: application/json
+Authorization: Bearer 14
+
+<> 2019-05-27T122031.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 14
+
+<> 2019-05-27T122020.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/users
+Accept: application/json
+Authorization: Bearer 14
+
+<> 2019-05-27T121959.401.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 14
+
+<> 2019-05-27T121929.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 1
+
+<> 2019-05-27T121921.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/users
+Accept: application/json
+Authorization: Bearer 1
+
+<> 2019-05-27T121906.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/users
+Accept: application/json
+Authorization: Bearer 16666
+
+<> 2019-05-27T121851.401.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 16666
+
+<> 2019-05-27T121818.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+Authorization: Bearer 1
+
+<> 2019-05-27T121808.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+
+<> 2019-05-27T121626.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+
+<> 2019-05-27T121123.200.json
+
+###
+
+GET http://y2aa-frontend.test/api/projects
+Accept: application/json
+
+<> 2019-05-27T121101.200.json
+
+###
+
