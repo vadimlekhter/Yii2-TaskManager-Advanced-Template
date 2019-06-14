@@ -52,7 +52,8 @@ class ProjectService extends Component
                 foreach ($newRoles as $userId => $newRole) {
                     $this->assignRole($project, User::findOne($userId), $newRole);
                 }
-            } elseif ($oldRoles = array_diff_assoc($usersRoles, $project->getUserRoles())) {
+            }
+            if ($oldRoles = array_diff_assoc($usersRoles, $project->getUserRoles())) {
                 foreach ($oldRoles as $userId => $oldRole) {
                     $this->cancelRole($project, User::findOne($userId), $oldRole);
                 }
