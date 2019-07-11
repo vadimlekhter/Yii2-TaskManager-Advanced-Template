@@ -65,12 +65,8 @@ return [
         ]
     ],
     'modules' => [
-//        https://github.com/yii2mod/yii2-comments
         'chat' => [
             'class' => 'common\modules\chat\Module',
-        ],
-        'comment' => [
-            'class' => 'yii2mod\comments\Module',
         ],
     ],
 ];

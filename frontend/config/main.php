@@ -68,6 +68,10 @@ return [
         'api' => [
             'class' => 'frontend\modules\api\Module',
         ],
+//        https://github.com/yii2mod/yii2-comments
+        'comment' => [
+            'class' => 'yii2mod\comments\Module',
+        ]
     ],
     'params' => $params,
 ];
